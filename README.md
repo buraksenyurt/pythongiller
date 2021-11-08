@@ -12,3 +12,17 @@ Oyun 4 basamaklı bir sayıyı tahmin etmemiz istiyor. Belli sayıda deneme hakk
 - Deneme hakkımızda 20 olsun.
 
 Oyunun çalışma zamanı çıktısı aşağıdakine benzer.
+
+### Öğrenilenler
+
+- _main_ fonksiyonu program giriş noktası olarak kullanılabilir.
+- söz dizimi girintili formattadır.
+- else if bloğu _elif_ şeklinde yazılır.
+- _print_ fonksiyonunda placeholder kullanıldığında _format_ metot çağrısı ile değerleri verilebilir.
+- terminal girdilerini _input_ metodu ile alabiliriz.
+- döngü türlerinden birisi _while_ ifadesi dir ve koşul sağlandığı sürece çalışır.
+- döngü bloğundan çıkmak için _break_ kullanılabilir.
+- kodda kullanılan yardımcı modüller _import_ ile başlangıçta belirtilir.
+- bir metin katarının karakterlerine _[]_ indis operatörü ile erişebiliriz.
+- metin katarı içeriğini karakter bazında karıştırmak için _random_ modülünün _shuffle_ metodu kullanılabilir.
+- değişkenler isimleri ve değer atamaları ile tanımlanabilir. Tür belirtmeye gerek yoktur.
