@@ -4,25 +4,30 @@ Python bilgilerimi eğlenceli bir şekilde hatırlamak ve daha da geliştirmek i
 
 ## Sayı Tahmin Oyunu _(Bagels)_
 
-Oyun 4 basamaklı bir sayıyı tahmin etmemiz istiyor. Belli sayıda deneme hakkımız var. Matematiksel olarak tümdengelim yaklaşımı baz alınıyor. Şöyle ki,
+Oyun 3 basamaklı bir sayıyı tahmin etmemizi istiyor. Belli sayıda deneme hakkımız var _(Örneğin 10)_. Matematiksel olarak tümdengelim yaklaşımı baz alınıyor. Şöyle ki,
 
-- Tahmin ettiğimiz rakam doğru ama sayının yanlış yerindeyse _Elma_
-- Tahmin ettiğimiz rakam hem doğru hem değru yerdeyse _Armut_
-- Tahmin ettiğimiz rakam sayıda yoksa _Mısır_
-- Deneme hakkımızda 20 olsun.
+- Tahmin ettiğimiz sayının herhangi bir rakamı/rakamları doğru ama yanlış basamaktaysa _Elma_
+- Tahmin ettiğimiz sayının herhangi bir rakamı/rakamları doğru ve doğru basamaktaysa _Armut_
+- Tahmin ettiğimiz sayı tamamen farklıysa yoksa _Mısır yani karavana_
+- Deneme hakkımızda 10 olsun.
 
-Oyunun çalışma zamanı çıktısı aşağıdakine benzer.
+Oyunun çalışma zamanı çıktısı kendi sistemimde aşağıdakine benzer oldu.
+
+![./assets/game01.png](./assets/game01.png)
+
+![./assets/game01_2.png](./assets/game01_2.png)
 
 ### Öğrenilenler
 
 - _main_ fonksiyonu program giriş noktası olarak kullanılabilir.
-- söz dizimi girintili formattadır.
+- Python kod bloklarını ayrıt etmek için girintili _(indentation)_ sözdizimi formatını kullanır.
 - else if bloğu _elif_ şeklinde yazılır.
 - _print_ fonksiyonunda placeholder kullanıldığında _format_ metot çağrısı ile değerleri verilebilir.
-- terminal girdilerini _input_ metodu ile alabiliriz.
-- döngü türlerinden birisi _while_ ifadesi dir ve koşul sağlandığı sürece çalışır.
-- döngü bloğundan çıkmak için _break_ kullanılabilir.
-- kodda kullanılan yardımcı modüller _import_ ile başlangıçta belirtilir.
-- bir metin katarının karakterlerine _[]_ indis operatörü ile erişebiliriz.
-- metin katarı içeriğini karakter bazında karıştırmak için _random_ modülünün _shuffle_ metodu kullanılabilir.
-- değişkenler isimleri ve değer atamaları ile tanımlanabilir. Tür belirtmeye gerek yoktur.
+- Terminal girdilerini _input_ metodu ile alabiliriz.
+- Döngü türlerinden birisi _while_ ifadesi dir ve koşul sağlandığı sürece çalışır.
+- Bir diğer döngü şekli de for kullanımıdır.
+- Döngü bloğundan çıkmak için _break_ kullanılabilir.
+- Kodda kullanılan yardımcı modüller _import_ ile başlangıçta belirtilir.
+- Bir metin katarının karakterlerine _[]_ indis operatörü ile erişebiliriz.
+- Metin katarı içeriğini karakter bazında karıştırmak için _random_ modülünün _shuffle_ metodu kullanılabilir.
+- Değişkenler isimleri ve değer atamaları ile tanımlanabilir. Tür belirtmeye gerek yoktur.
