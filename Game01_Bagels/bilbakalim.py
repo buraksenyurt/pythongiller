@@ -21,14 +21,14 @@ def main():
         secret_number=get_game_number(); # bilgisayarın üreteceği gizli sayıyı alalım
         print('Bir sayı tuttum ama sana söylemeyeceğim. Henüz')
         try_count=1
-        while try_count<MAX_TRY_COUNT: # tahmin sayısı kadarlık bir döngü başlattık
+        while try_count<=MAX_TRY_COUNT: # tahmin sayısı kadarlık bir döngü başlattık
             guess=''
 
             # başlangıçta guess aşağıdaki kriterleri sağlamadığı için oyuncudan sayı girmesi istenecektir
             # oyuncu rakam sayısı ve sayısallığı tutturana kadar da bu devam edecektir
             while len(guess)!=NUM_DIGITS or not guess.isdecimal():
                 print('Tahminin nedir?')
-                guess=input('> ')
+                guess=input('...')
 
             # oyuncunun girdiği değerle bilgisayarın ürettiği sayının karşılaştırılması sonrası
             # oyuncuya bazı ipuçları bırakılacak
@@ -42,12 +42,12 @@ def main():
 
             # deneme sayısına rağmen oyuncu bilemezse ona üzücü haberi vereceğiz
             if try_count> MAX_TRY_COUNT:
-                print('Ne yazık ki hakların tükendi.\nTuttuğum sayı {} idi'.format(secret_number))
+                print('Ne yazık ki hakların tükendi.Tuttuğum sayı {} idi'.format(secret_number))
 
         # En dıştaki sonsuz döngünün sebebi işte burası
         # Bir tur oyandıktan sonra oyuncunun yeniden oynamak isteyip istemeyeceğine göre döngüden çıkılır veya devam edilir
         print('Bir tur daha oynamak ister misin ;-)(Evet E, Hayırsa H)')
-        if not input('> ').lower().startswith('e'):
+        if not input('...').lower().startswith('e'):
             break
     print('Seninle oynamak keyifliydi. Tekrardan görüşmek üzere :-)')
 
@@ -70,11 +70,11 @@ Oyuncunun girdiği tahmini değerlendirip Elma, Armut, Mısır veya Bingo cevapl
 """
 def check_guess(player_guess,secret_number):
     if player_guess==secret_number:
-        return "BINGO! Doğru tahmin"
+        return "BINGO! Doğru tahmin."
     # Sayılar aynı ise zaten bilmiş demektir.
     # Değilse rakamlara göre durumu oyuncuya söylemeliyiz.
     
-    tips=[]
+    tips=[] # ipuçlarını tutacak liste
 
     for i in range(len(player_guess)): # oyuncu tarafından yapılan tahmin rakamlarında gezeceğimiz bir döngü. Nitekim her rakamı değerlendirmek lazım.
         if player_guess[i]==secret_number[i]: # eğer i indisindeki rakamlar her iki değişken içinde aynı ise 
@@ -85,9 +85,10 @@ def check_guess(player_guess,secret_number):
     # döngü sonucu tips dizisine eklenen hiçbir şey yoksa tahmin komple yanlıştır,    
     if len(tips)==0:
         return "MISIR" # bu nedenle oyuncuya MISIR denir.
-    else: # lakin bir takım rakamlar için ELMA, ARMUT durumu oluşmuşsa 
-        tips.sort() # dizi sıralanır 
-        return ' '.join(tips) # elemanlar arasına birer boşluk konulara geriye döndürülür
+   
+    # lakin bir takım rakamlar için ELMA, ARMUT durumu oluşmuşsa 
+    tips.sort() # dizi sıralanır. Sıralamazsak oyuncuya çok net bir ipucu vermiş olabiliriz 
+    return ','.join(tips) # elemanlar arasına birer boşluk konulara geriye döndürülür
 
 
 if __name__ == '__main__':
