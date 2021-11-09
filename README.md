@@ -36,8 +36,25 @@ Oyunun çalışma zamanı çıktısı kendi sistemimde aşağıdakine benzer old
 
 Oyun feodal Japonya'da geçen bir zar oyunu. Cho çift, Han ise tek anlamında. Oyuna katılan oyuncular bir bardak içinde sallanıp masaya atılan iki zarın rakamlar toplamının tek mi çift mi olduğunu tahmin etmeye çalışırlar. Zarları bambu ağaçtan yapılma bir bardakta krupiye sallar ve ortaya doğru gönderir. Göndermeden önce oyuncular tahminlerini yaparlar. Üstelik bu tahminlerini yaparken masaya bir miktar para da yatırırlar. Sonrası malum :-)
 
-Şimdi biraz düşünelim...Bilgisayar, kurpiyer görevini üstlenecek. Oyuncu başlangıçta kasaya _(mutfak diyelim)_ belli miktar suşi yatırmak durumunda. Oyun başlangıcında mutfakta da belli bir miktar suşi olacak. Oyuncu bir tahminde bulunacak. Tek veya çift diye. Sonrasında bilgisayarın atacağı zarlar 1 ile 6 arasında rastgele iki sayı üretecek. Toplamına göre oyuncu suşi kazanacak ya da kaybedecek. Bilgisayar sonraki tur devam etmek isteyip istemeyeceğini de soracak. 
+Şimdi biraz düşünelim...Bilgisayar, kurpiyer görevini üstlenecek. Oyuncu başlangıçta kasaya _(mutfak diyelim)_ belli miktar suşi yatırmak durumunda. Sahip olduğu suşilerin onun kendi tabağında olduğunu düşünelim. Oyuncu Tek veya çift diye bir tahminde bulunacak. Sonrasında bilgisayarın atacağı zarlar 1 ile 6 arasında rastgele iki sayı üretecek. Toplamına göre oyuncu suşi kazanacak ya da kaybedecek. Oyun, oyuncunun suşileri bitene ya da _sayanora_ yazana kadar devam edecek.
 
-Oyunun çalışma zamanı çıktısına ait görüntüler.
+_Oyunda terminali biraz şenlendirmek adına termcolor isimli harici bir pakette kullandım_
+
+```bash
+pip install termcolor
+````
+
+Oyunun çalışma zamanı çıktısına ait bir görüntü.
+
+![./assets/game02.png](./assets/game02.png)
 
 ### Öğrenilenler
+
+- Uygulamadan çıkmak için _sys_ modülünün _exit_ fonksiyonu kullanılabilir.
+- _{key:value,key:value,}_ notasyonu ile Dictionary koleksiyonları tanımlanabilir.
+- _Dictionary_ deki bir çiftin değerine ulaşmak için _[key]_ index notasyonundan yararlanılır.
+- Bir değerin sayısal olup olmadığını kontrol etmek için _isdecimal_ fonksiyonu kullanılabilir.
+- rastgele tamsayı üretmek için random nesnesinin randint fonksiyonundan yararlanılır. Fonksiyona değer aralığı verilebilir.
+- // operatörü ile bölme işlemi sonucu sola doğru yuvarlanır.
+- Harici bir pip modülünü yüklemek için _pip install modüladı_ komutu kullanılabilir.
+- Harici bir pakete başvurmadan \a komutunu kullanarak beep sesi çıkartabiliriz.
