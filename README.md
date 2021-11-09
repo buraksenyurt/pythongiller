@@ -31,3 +31,13 @@ Oyunun çalışma zamanı çıktısı kendi sistemimde aşağıdakine benzer old
 - Bir metin katarının karakterlerine _[]_ indis operatörü ile erişebiliriz.
 - Metin katarı içeriğini karakter bazında karıştırmak için _random_ modülünün _shuffle_ metodu kullanılabilir.
 - Değişkenler isimleri ve değer atamaları ile tanımlanabilir. Tür belirtmeye gerek yoktur.
+
+## Çift mi? Tek mi? _(Cho-Han)_
+
+Oyun feodal Japonya'da geçen bir zar oyunu. Cho çift, Han ise tek anlamında. Oyuna katılan oyuncular bir bardak içinde sallanıp masaya atılan iki zarın rakamlar toplamının tek mi çift mi olduğunu tahmin etmeye çalışırlar. Zarları bambu ağaçtan yapılma bir bardakta krupiye sallar ve ortaya doğru gönderir. Göndermeden önce oyuncular tahminlerini yaparlar. Üstelik bu tahminlerini yaparken masaya bir miktar para da yatırırlar. Sonrası malum :-)
+
+Şimdi biraz düşünelim...Bilgisayar, kurpiyer görevini üstlenecek. Oyuncu başlangıçta kasaya _(mutfak diyelim)_ belli miktar suşi yatırmak durumunda. Oyun başlangıcında mutfakta da belli bir miktar suşi olacak. Oyuncu bir tahminde bulunacak. Tek veya çift diye. Sonrasında bilgisayarın atacağı zarlar 1 ile 6 arasında rastgele iki sayı üretecek. Toplamına göre oyuncu suşi kazanacak ya da kaybedecek. Bilgisayar sonraki tur devam etmek isteyip istemeyeceğini de soracak. 
+
+Oyunun çalışma zamanı çıktısına ait görüntüler.
+
+### Öğrenilenler
