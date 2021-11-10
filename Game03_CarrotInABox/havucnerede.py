@@ -32,7 +32,7 @@ second_player = input(
             'cyan'))
 
 # :5 operatörü ile bir string içinde ilk 5 karakteri dilimleyebiliriz
-player_names = first_player[:5] + '.........' + second_player[:5]
+player_names = first_player[:5] + '|.........X.........|' + second_player[:5]
 print(player_names)
 
 left_box_closed = colored(
@@ -40,7 +40,7 @@ left_box_closed = colored(
  _________ 
 /        /| 
 +-------+ |
-|   A   | |
+|   {}   | |
 |       | /
 +-------+/
 ''', 'magenta')
@@ -50,7 +50,7 @@ right_box_closed = colored(
                  _________ 
                 /        /|
                 +-------+ |
-                |   B   | |
+                |   {}   | |
                 |       | /
                 +-------+/
 ''', 'cyan')
@@ -62,7 +62,7 @@ left_box_full = colored(
  |__||___| 
 /   ||   /| 
 +-------+ |
-|   A   | |
+|   {}   | |
 |       | /
 +-------+/
     ''', 'magenta')
@@ -74,7 +74,7 @@ left_box_empty = colored(
  |_______| 
 /        /| 
 +-------+ |
-|   A   | |
+|  {}    | |
 |       | /
 +-------+/
     ''', 'magenta')
@@ -86,7 +86,7 @@ right_box_full = colored(
                  |__||___| 
                 /   ||   /| 
                 +-------+ |
-                |   B   | |
+                |  {}    | |
                 |       | /
                 +-------+/
     ''', 'cyan')
@@ -98,12 +98,12 @@ right_box_empty = colored(
                  |_______| 
                 /        /| 
                 +-------+ |
-                |   B   | |
+                |  {}    | |
                 |       | /
                 +-------+/
     ''', 'cyan')
 
-print(left_box_closed + right_box_closed)
+print(left_box_closed.format('A') + right_box_closed.format('B'))
 
 # format fonksiyonunda aynı değişkenin birden fazla yerde kullanabiliriz. (p2)
 print('''
@@ -124,13 +124,13 @@ input('')
 state = random.randint(1, 2)
 
 # state değerini 1 olması hali orada havuç olduğu anlamına gelecek
-carrot_exist = state == 1
+carrot_in_left_box = state == 1
 
 # örneğin 1 gelirse sol kutuda havuç olsun. 2 gelirse de olmasın
 if state == 1:
-    print(left_box_full, right_box_closed)
+    print(left_box_full.format('A'), right_box_closed.format('B'))
 else:
-    print(left_box_empty, right_box_closed)
+    print(left_box_empty.format('A'), right_box_closed.format('B'))
 
 input(
     colored('Devam etmek için lütfen bir tuşa bas {}'.format(first_player),
@@ -165,28 +165,27 @@ while True:
         break
 
 print(
-    '''
+    colored(
+        '''
     
     Leydiiisss ennn centılmııınnnn!!!
     İşte sonuçlar :)
 
     Sonuçlar için lütfen bir tuşa basın.
-''', )
+
+    \a
+''', 'blue'))
 input()
 
 # Eğer ikinci oyuncu kutuların yerleri değişsin istediyse
 # carrot_exist durumunun tersini alıyor
 # ve kutuların yerini değiştirip ekrana basıyoruz
 if p2_response == 'E':
-    carrot_exist = not carrot_exist
-    if carrot_exist:
-        print(right_box_full, left_box_empty)
-    else:
-        print(right_box_empty, left_box_empty)
+    left_box_full, right_box_empty = right_box_full, left_box_empty
+
+if carrot_in_left_box:
+    print(left_box_full.format('A'), right_box_empty.format('B'))
 else:
-    if carrot_exist:
-        print(left_box_full, right_box_empty)
-    else:
-        print(left_box_empty, right_box_empty)
+    print(right_box_full.format('B'), left_box_empty.format('A'))
 
 print('Oynadığınız için teşekkürler :) Görüşmek üzere')
