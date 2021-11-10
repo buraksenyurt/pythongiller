@@ -4,6 +4,8 @@ Python bilgilerimi eğlenceli bir şekilde hatırlamak ve daha da geliştirmek i
 
 ## Sayı Tahmin Oyunu _(Bagels)_
 
+__Game01_Bagles/bilbakalim.py__
+
 Oyun 3 basamaklı bir sayıyı tahmin etmemizi istiyor. Belli sayıda deneme hakkımız var _(Örneğin 10)_. Matematiksel olarak tümdengelim yaklaşımı baz alınıyor. Şöyle ki,
 
 - Tahmin ettiğimiz sayının herhangi bir rakamı/rakamları doğru ama yanlış basamaktaysa _Elma_
@@ -34,7 +36,9 @@ Oyunun çalışma zamanı çıktısı kendi sistemimde aşağıdakine benzer old
 
 ## Çift mi? Tek mi? _(Cho-Han)_
 
-Oyun feodal Japonya'da geçen bir zar oyunu. Cho çift, Han ise tek anlamında. Oyuna katılan oyuncular bir bardak içinde sallanıp masaya atılan iki zarın rakamlar toplamının tek mi çift mi olduğunu tahmin etmeye çalışırlar. Zarları bambu ağaçtan yapılma bir bardakta krupiye sallar ve ortaya doğru gönderir. Göndermeden önce oyuncular tahminlerini yaparlar. Üstelik bu tahminlerini yaparken masaya bir miktar para da yatırırlar. Sonrası malum :-)
+__Game02_ChoHan/tekcift.py__
+
+Oyun feodal Japonya'da geçen bir zar oyunu. Cho çift, Han ise tek anlamında. Oyuna katılan oyuncular bir bardak içinde sallanıp masaya atılan iki zarın rakamlar toplamının tek mi çift mi olduğunu tahmin etmeye çalışırlar. Zarları bambu ağaçtan yapılma bir bardakta krupiye sallar ve ortaya doğru gönderir. Göndermeden önce oyuncular tahminlerini yaparlar. Üstelik bu tahminlerini yaparken masaya bir miktar para da yatırırlar. Sonrası malum.
 
 Şimdi biraz düşünelim...Bilgisayar, kurpiyer görevini üstlenecek. Oyuncu başlangıçta kasaya _(mutfak diyelim)_ belli miktar suşi yatırmak durumunda. Sahip olduğu suşilerin onun kendi tabağında olduğunu düşünelim. Oyuncu Tek veya çift diye bir tahminde bulunacak. Sonrasında bilgisayarın atacağı zarlar 1 ile 6 arasında rastgele iki sayı üretecek. Toplamına göre oyuncu suşi kazanacak ya da kaybedecek. Oyun, oyuncunun suşileri bitene ya da _sayanora_ yazana kadar devam edecek.
 
@@ -42,7 +46,7 @@ _Oyunda terminali biraz şenlendirmek adına termcolor isimli harici bir pakette
 
 ```bash
 pip install termcolor
-````
+```
 
 Oyunun çalışma zamanı çıktısına ait bir görüntü.
 
@@ -51,10 +55,33 @@ Oyunun çalışma zamanı çıktısına ait bir görüntü.
 ### Öğrenilenler
 
 - Uygulamadan çıkmak için _sys_ modülünün _exit_ fonksiyonu kullanılabilir.
-- _{key:value,key:value,}_ notasyonu ile Dictionary koleksiyonları tanımlanabilir.
+- key:value notasyonu ile Dictionary koleksiyonları tanımlanabilir.
 - _Dictionary_ deki bir çiftin değerine ulaşmak için _[key]_ index notasyonundan yararlanılır.
 - Bir değerin sayısal olup olmadığını kontrol etmek için _isdecimal_ fonksiyonu kullanılabilir.
 - rastgele tamsayı üretmek için random nesnesinin randint fonksiyonundan yararlanılır. Fonksiyona değer aralığı verilebilir.
 - // operatörü ile bölme işlemi sonucu sola doğru yuvarlanır.
 - Harici bir pip modülünü yüklemek için _pip install modüladı_ komutu kullanılabilir.
 - Harici bir pakete başvurmadan \a komutunu kullanarak beep sesi çıkartabiliriz.
+
+## Havuç Hangi Kutuda _(Carrot in a Box)_
+
+__Game03_CarrotInABox/havucnerede.py__
+
+İki arkadaşın yan yana oynayabileceği bu enteresan oyunda terminal ekranında ASCII karakterleri ile çizilen iki kutu yer alıyor. Farklı renkteki bu kutuların birisinde havuç oluyor ve doğal olarak kutuların açık ve kapalı hallerinin de ASCII karakterleri ile çizilmesi gerekiyor :) Oyunda karşılıklı güven söz konusu olduğu kadar temelde blöf yapma ilkesi de yer alıyor. Nitekim oyunculardan birisi gözünü kapatırken bilgisayar diğer oyuncuya kutuları gösteriyor. Ardından gözleri kapalı olan oyuncu diğer oyuncunun kutusunda havuç olup olmadığını bilmeye çalışıyor. He hee :D Eğlenceli bir pratik olacağa benziyor.
+
+Oyunun çalışma zamanından bazı görüntüler.
+
+![./assets/game03_1.png](./assets/game03_1.png)
+
+![./assets/game03_2.png](./assets/game03_2.png)
+
+![./assets/game03_3.png](./assets/game03_3.png)
+
+![./assets/game03_4.png](./assets/game03_4.png)
+
+
+### Öğrenilenler
+
+- Atamalarda birden eşitliğin sağ tarafındaki birden fazla değişken sol tarafta aynı sayıdaki değişkene atanabilir.
+- ''' stilinde yazılan metinlerde {} için değişken adları yardımıyla aynı parametrenin birden fazla yerde kullanılması sağlanabilir.
+- Main veya herhangi bir başka fonksiyonu bulunmayan python dosyaları betik olarak yukarıdan aşağıya işletilir.

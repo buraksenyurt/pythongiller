@@ -1,7 +1,7 @@
-import math
+# rastlantısallık oyunların olmazsa olmaz parçalarından
 import random
-from typing import Match  # rastlantısallık oyunların olmazsa olmaz parçalarından
-from termcolor import colored  # ortamı renklendirmek için başvuracağımız harici python paketi
+# ortamı renklendirmek için başvuracağımız harici python paketi
+from termcolor import colored
 
 # ''' notasyonunu kullandığımızda buraya nasıl yazdıysak terminale de o şekilde basılacaktır.
 print(
@@ -117,7 +117,7 @@ print('''
     Oyuncu {p1}. Arkadaşının bakmadığından emin olduktan sonra bir tuşa bas.
     
 '''.format(p1=first_player.upper(), p2=second_player.upper()))
-input('')
+input()
 
 # Şimdi soldaki kutu içine havuç koyup koymama kararını vereceğiz.
 # 1 veya 2 gelmesi durumuna göre buna karar vereceğiz.
@@ -178,10 +178,9 @@ print(
 input()
 
 # Eğer ikinci oyuncu kutuların yerleri değişsin istediyse
-# carrot_exist durumunun tersini alıyor
-# ve kutuların yerini değiştirip ekrana basıyoruz
+# kutuların yerini değiştirip havucun hangi kutuda olduğuna bakarak sonuçları ekrana basıyoruz.
 if p2_response == 'E':
-    left_box_full, right_box_empty = right_box_full, left_box_empty
+    left_box_full, right_box_empty = right_box_full, left_box_empty  # eşitliğin her iki tarafında eşit sayıda değişken kullanılarak çoklu atama yapabiliriz
 
 if carrot_in_left_box:
     print(left_box_full.format('A'), right_box_empty.format('B'))
