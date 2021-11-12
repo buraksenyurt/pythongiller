@@ -85,3 +85,25 @@ Oyunun çalışma zamanından bazı görüntüler.
 - Atamalarda birden eşitliğin sağ tarafındaki birden fazla değişken sol tarafta aynı sayıdaki değişkene atanabilir.
 - ''' stilinde yazılan metinlerde {} için değişken adları yardımıyla aynı parametrenin birden fazla yerde kullanılması sağlanabilir.
 - Main veya herhangi bir başka fonksiyonu bulunmayan python dosyaları betik olarak yukarıdan aşağıya işletilir.
+
+## ASCII Kalp _(Bitmap Message)_
+
+__Game04_AsciiHearth/kalpben.py__
+
+Bu sefer bilgisayar oyuncudan 5 harfli bir kelime girmesini ve renk seçmesini istiyor. Sonra kendi sisteminde kayıtlı olan kalp metnini kullanarak ona bir çıktı üretiyor. Kitapta dünya haritası kullanılmıştı ben kalp seçtim ama başka alternatifler de kullanılabilir.
+
+Oyunun çalışma zamanından bir görüntü. Kalp yerine örnek bir text dosyadan farklı resimler okutup daha çok seçenek sunabiliriz de ;)
+
+![./assets/game04_1.png](./assets/game04_1.png)
+
+![./assets/game04_3.png](./assets/game04_3.png)
+
+Aşağıdaki çıktı için [şu](https://emojipedia.org/people/) adrese gidip ilgili emoji'leri copy paste ile terminal ekranına yanyana koymak gerekiyor. Hatta bu emojileri kodda bir koleksiyonda saklayıp rastgele beşini bir araya getirip de oyuncu için rastgele sembollerden oluşan bir kalp resmi de çizdirebiliriz.
+
+![./assets/game04_2.png](./assets/game04_2.png)
+
+### Öğrenilenler
+
+- Bir metin içeriğini splitlines ile satırlara bölüp okuyabiliriz.
+- enumarates ile bir metin katarındaki içeriği indeks:karakter ikilisi olarak elde edebiliriz.
+- _eleman not in dizi_ notasyonu ile bir değerin, bir dizi içinde olup olmadığını kontrol edebiliriz.
