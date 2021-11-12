@@ -1,8 +1,8 @@
 from termcolor import colored
 import random, sys
 
-# Oyunda amaç oyuncunun girdiği kısa kelimeyi aşağıdaki kalp resminde görünen * sembolleri yerine yerleştirmek.
-# Bunu yaparken işi eğlenceli kılmak için oyuncudan birde renk seçmesini isteyeceğiz.
+# Oyunda amaç oyuncunun girdiği beş harfli bir kelimeyi aşağıdaki kalp resminde görünen * sembolleri yerine yerleştirmek.
+# Bunu yaparken işi eğlenceli kılmak adına oyuncudan birde renk seçmesini isteyeceğiz. Random'da yazabilir. Bu durumda rengi biz rastgele belirleyeceğiz.
 
 bitmap = """
 ........................................
@@ -42,10 +42,12 @@ print(
         """
     Merhabalar :) Ne güzel bir gün değil mi? Senin için bir resim çizmek isterim.
     
-    Bana sevdiğin bir rengi söyler misin? (red, yellow, magenta, green, white, blue, cyan, gray)
+    Bana sevdiğin bir rengi söyler misin? (red, yellow, magenta, green, white, blue, cyan, random)
 """, "magenta"))
 
-colors = ["RED", "YELLOW", "MAGENTA", "GREEN", "WHITE", "BLUE", "CYAN", "GRAY"]
+colors = [
+    "RED", "YELLOW", "MAGENTA", "GREEN", "WHITE", "BLUE", "CYAN", "RANDOM"
+]
 
 # Doğru rengi yazana kadar onu gıcık ediyoruz :)
 # Bunun için yine sonsuz bir döngümüz var girilen bilginin colors isimli string dizide olup olmadığına bakarak akışı yönlendiriyoruz.
@@ -60,6 +62,10 @@ while True:
                 "red"))
     else:
         break
+
+# Oyuncu random seçerse diziden rastgele bir rengi biz belirliyoruz.
+if user_color == "RANDOM":
+    user_color = colors[random.randint(1, 7)]
 
 print(
     colored(
@@ -91,4 +97,4 @@ for line in bitmap.splitlines():
             print(colored(user_message[i % len(user_message)],
                           user_color.lower()),
                   end='')
-    print() # iç döngü bitince bir alt satıra geçerek devam ediyoruz
+    print()  # iç döngü bitince bir alt satıra geçerek devam ediyoruz
