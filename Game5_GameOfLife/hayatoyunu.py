@@ -27,9 +27,9 @@ def main():
         next_cells = calculate_next_generation(cells)
 
         # oyuncan çıkmak için kullanıcının bir tuşa basmasını bekliyoruz.
-        # bunu yaparken bir try bloğu kullandık ve içinde sahneyi 1 saniyeliğine dondurmaktayız (Thread sleep).
+        # bunu yaparken bir try bloğu kullandık ve içinde sahneyi 3 saniyeliğine dondurmaktayız (Thread sleep).
         try:
-            time.sleep(1)
+            time.sleep(3)
         except KeyboardInterrupt:  # Klavyeden bir kesme sinyali gelirse exit ile sisteme döneceğiz
             sys.exit()
 

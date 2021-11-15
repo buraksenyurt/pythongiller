@@ -107,3 +107,33 @@ Aşağıdaki çıktı için [şu](https://emojipedia.org/people/) adrese gidip i
 - Bir metin içeriğini splitlines ile satırlara bölüp okuyabiliriz.
 - enumarates ile bir metin katarındaki içeriği indeks:karakter ikilisi olarak elde edebiliriz.
 - _eleman not in dizi_ notasyonu ile bir değerin, bir dizi içinde olup olmadığını kontrol edebiliriz.
+
+## Conway’in Hayat Oyunu _(Conway's Game of Life)_
+
+__Game05_GameOfLife/hayatoyunu.py__
+
+Kitaptan seçtiğim sıradaki bölüm ne yazık ki 2020 yılında Covid-19 yüzünden aramızdan ayrılan İngiliz matematikçi John Horton Conway'ın hayat oyunu. Bu oyun hücresel bir otomat oyunu olup sadece matematik değil biyoloji, fizik ve daha birçok disiplinde ele alınmaktadır. Hayatın temel özelliklerini model alan sonsuza dek yaşabilen bir oyundur. Oyunda siyah veya beyaz kutular söz konusudur. Siyah kutular canlıları, varlıkları veya örneğin bakterileri temsil edebilir. Diğer yandan beyaz kutular yokluk, boşluk ya da ölü olma halini ifade eder. Oyunun kuralları şöyledir.
+
+- İki veya üç komşusu olan canlı hücreler simülasyonun bir sonraki adımında canlı kalırlar. Yani yaşamaya devam eder.
+- Tam olarak üç komşusu olan ölü hücreler simülasyonun bir sonraki adımında canlanırlar. Doğum diyebiliriz.
+- Yukarıdaki koşullar dışında kalan hücreler ya ölürler ya da ölü kalırlar. Söz gelimi üçten fazla komşusu olan canlı hücreler aşırı kalabalıktan dolayı, ikiden az komşusu olanlar da yalnızlıktan dolayı ölürler.
+
+Matematiksel açıdan baktığımızda oyuncusu olmayan ve ilerleyen süreçteki simülasyonların akibetnin de oyun başlarkenki dağılıma göre şekillendiği ve fakat sonunun nereye varacağını tahmin edemediğimiz bir oyun bu :)
+
+İşte yakaladığım birkaç görüntü.
+
+![./assets/game05_1.png](./assets/game05_1.png)
+
+![./assets/game05_2.png](./assets/game05_2.png)
+
+![./assets/game05_3.png](./assets/game05_3.png)
+
+### Öğrenilenler
+
+- Bir metottan birden fazla değişken döndürebiliriz.
+- Dictionary koleksiyonu deepCopy ile kopyalayabiliriz.
+- Bir Dictionary koleksiyonunun elemanlarını (x,y) gibi tuple türü şeklinde oluşturabiliriz.
+- Bir try bloğunda kullanıcının klavyeden verdiği tepkiyi bekleyip akışı değiştirebiliriz.
+- Koşullu ifadelerde ve/veya için and/or anahtar kelimelerini kullanırız.
+- Sabitleri büyük harf ve snake case tanımlarız.
+- O anki thread'i sleep fonksiyonu ile belli bir süre bekletmeye alabiliriz.
