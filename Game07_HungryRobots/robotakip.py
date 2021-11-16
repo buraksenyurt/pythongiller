@@ -1,23 +1,36 @@
 import random, sys, time
 from termcolor import colored
-
-BOARD_WITH = 80
-BOARD_HEIGHT = 40
-GHOST_COUNT = 10
+'''
+    Oyun sahasının uzunluğu, yüksekliği, hayalet sayısı, teleport sayısı, avcı hayalet sayısı,
+    duvar sayısı, ve karakter sembolleri ile ilgili sabit tanımlamaları yapılıyor.
+'''
+BOARD_WITH = 70
+BOARD_HEIGHT = 20
+GHOST_COUNT = 20
 TELEPORT_COUNT = random.randint(1, 4)
-DEAD_GHOSTS = 2
+HUNTER_GHOSTS_COUNT = 2
 WALL_COUNT = 100
-GHOST = '👻'  # Oyuncuyu kovalayan hayaletler
-PLAYER = '🦊'  # Oyuncu
+GHOST = colored(chr(9587), 'cyan')  # Oyuncuyu kovalayan hayalet karakteri
+PLAYER = colored(
+    'P', 'magenta', attrs=['bold', 'blink', 'underline']
+)  # Oyuncu için altı çizili magenta renginde ve yanıp sönen bir P karakteri kullandık
 EMPTY_SPACE = ' '
-GHOST_HUNTER = '👽'  # Hayaletler çarptığında onları öldüren avcılar
-WALL = chr(9617)  # Duvar sembolümüz
+GHOST_HUNTER = colored(
+    chr(9587), 'red')  # Hayaletler çarptığında onları öldüren avcı karakteri
+WALL = chr(9608)  # Duvar sembolü
 
 
 def main():
     print(colored('Hayaletten kaç oyununa hoş geldin', 'cyan'))
 
+    # oyun sahası oluşturulur
     board = createBoard()
+    # hayaletler sahaya yerleştirilir
+    ghosts = addGhosts(board)
+    # oyuncu için müsait başlangıç pozisyonu bulunur
+    player_location = findFreeLoc(board, ghosts)
+    # oyun sahası ekrana çizilir
+    displayBoard(board, ghosts, player_location)
 
 
 '''
@@ -56,7 +69,7 @@ def createBoard():
     '''
         Sırada avcıların(ölü hayaletler) yerleştirilmesi var. Hayaletler onlara çarpınca da ölüyorlardı.
     '''
-    for _ in range(DEAD_GHOSTS):
+    for _ in range(HUNTER_GHOSTS_COUNT):
         x, y = findFreeLoc(board, [])
         board[(x, y)] = GHOST_HUNTER
 
@@ -78,6 +91,37 @@ def findFreeLoc(board, ghosts):
         if board[(x, y)] == EMPTY_SPACE and (x, y) not in ghosts:
             break
     return (x, y)
+
+
+'''
+    Oyun tahtasını sahaya çizmek için kullanılan fonksiyondur.
+'''
+
+
+def displayBoard(board, ghost, player_position):
+    # Tüm tahtayı dolaşan iki boyutlu döngü (x,y)'nin ne olduğun bakar ve print işlemi gerçekleştirir.
+    for y in range(BOARD_HEIGHT):
+        for x in range(BOARD_WITH):
+            if board[(x, y)] == WALL:
+                print(WALL, end='')
+            elif board[(x, y)] == GHOST_HUNTER:
+                print(GHOST_HUNTER, end='')
+            elif (x, y) == player_position:
+                print(PLAYER, end='')
+            elif (x, y) in ghost:
+                print(GHOST, end='')
+            else:
+                print(EMPTY_SPACE, end='')
+        print(
+        )  # Dış döngünün satırıdır. İlk satırdaki karakterlerin yerleşimi bitince alt satıra geçilir.
+
+
+def addGhosts(board):
+    ghosts = []
+    for _ in range(GHOST_COUNT):
+        x, y = findFreeLoc(board, ghosts)
+        ghosts.append((x, y))
+    return ghosts
 
 
 if __name__ == '__main__':
