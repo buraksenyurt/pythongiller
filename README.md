@@ -156,3 +156,17 @@ Oyundan bir görüntü.
 - Bir metin katarındaki karakterleri for döngüsü ile dolaşmamız mümkündür.
 - random.choise fonksiyon ile parametre olarak gelen dilimden herhangi birisinin alınmasını sağlayabiliriz.
 - 0 ve 1 arasında üretilen rastgele bir sayıyı yüzdesel olarak olasılık hesabına katabiliriz.
+
+## Robotlar Peşimde _(Hungry Robots)_
+
+__Game07_HungryRobots/robotakip.py__
+
+Bu sefer seçtiğim oyun oldukça eğlenceliye benziyor. Oyun sahasında yer alan belli sayıda robot oyuncuyu kovalıyor. Amaç onlara yakalanmadan hayatta kalmak. Robotlar birbirlerine çarptığında veya ölü robotlara çarptığında yok olabiliyorlar. Oyun sahasında robotlar dışında duvarlar da var. Oyuncunun teleporter'ı da bulunuyor ve isterse sahada rastgele bir konuma ışınlanabiliyor. Ben senaryoda robot yerine hayalet, ölü robot yerine bir avcı kavramlarını kullanmayı planlıyorum. Oyuncunun hayatta kaldığı durumları da puanlayarak bir skor sistemi eklemek istiyorum.
+
+
+
+### Öğrenilenler
+
+- chr fonksiyonu ile decimal değerin karşılığı olan bir unicode karakteri elde edebiliriz.
+- Bir for döngüsündeki sayaç değerini kullanmıyorsak _ operatörü ile onu kullanmayacağımızı belirtebiliriz.
+- Aynı ifadede birden fazla atamayı ardışıl = operatörleri kullanarak sağlayabiliriz. _(x=y=z=3.14 gibi)_
