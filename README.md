@@ -137,3 +137,22 @@ Matematiksel açıdan baktığımızda oyuncusu olmayan ve ilerleyen süreçteki
 - Koşullu ifadelerde ve/veya için and/or anahtar kelimelerini kullanırız.
 - Sabitleri büyük harf ve snake case tanımlarız.
 - O anki thread'i sleep fonksiyonu ile belli bir süre bekletmeye alabiliriz.
+
+## 1337 veya hax0r _(LeetSpeak)_
+
+__Game06_LeetSpeak/sifreliyazi.py__
+
+Kitaptan seçtiğim sıradaki terminal oyunu internetin BBS'ler aracılığıyla popülerleşmeye başladığı yıllarda kullanılan harf değiştirme tekniğine ait. O vakitler buna Leet _(eleet, LeetSpeak olarak da bilinir)_ adını vermişler. Ya da bilinen karşılığı ile 1337 ve hatta hax0r. Metinsel ifadedeki alfabetik karakterlerin yansımalarına bakılarak sayı veya başka sembollere çevrilmesine dayalı eğlenceli bir sistemden bahsediyoruz. Örneğin _leetspeak_ ifadesi _L3375P34_ şeklinde yazılıyor.
+
+Oyundan bir görüntü.
+
+![./assets/game06_1.png](./assets/game06_1.png)
+
+### Öğrenilenler
+
+- Sistemde yüklü olup olmadığını bilmediğimiz bir import işleminde try bloğu kullanabiliriz.
+- try bloğunda oluşacak bir istisna durumunu pass ile görmezden gelip kod akışının devam etmesini sağlayabiliriz.
+- pyperclip.copy metodu ile bir içeriği sistem panosuna kopyalayabiliriz.
+- Bir metin katarındaki karakterleri for döngüsü ile dolaşmamız mümkündür.
+- random.choise fonksiyon ile parametre olarak gelen dilimden herhangi birisinin alınmasını sağlayabiliriz.
+- 0 ve 1 arasında üretilen rastgele bir sayıyı yüzdesel olarak olasılık hesabına katabiliriz.
