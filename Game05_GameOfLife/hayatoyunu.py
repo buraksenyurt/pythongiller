@@ -2,9 +2,9 @@ import copy, random, sys, time  # Kullanacağımız python paketleri
 from termcolor import colored
 
 # Yaşam alanımızın sınırlarını belirliyoruz
-# 49 X 10 bir ortam olduğunu düşünebiliriz.
+# 49 X 20 bir ortam olduğunu düşünebiliriz.
 SCREEN_WIDTH = 49
-SCREEN_HEIGHT = 10
+SCREEN_HEIGHT = 20
 ALIVE = colored(
     '■', 'yellow')  # Canlı olma halini bu ASCII karakteri ile simüle edelim
 DEAD = ' '  # Ölü olma hali tam bir boşluk
@@ -18,7 +18,7 @@ def main():
     # oyunun ana döngüsü (tabii ki biz aksini diyinceye kadar sonsuz bir döngü)
     while True:
         print(
-            '\n' * 50
+            '\n' * 80
         )  # oyun zeminini her setup ya da simülasyonun sonraki aşamasında şöyle bir temizliyoruz.
 
         # ilk olarak nextCells'in simülasyonun güncel durumunu deep copy ile kopyalıyoruz
@@ -29,7 +29,7 @@ def main():
         # oyuncan çıkmak için kullanıcının bir tuşa basmasını bekliyoruz.
         # bunu yaparken bir try bloğu kullandık ve içinde sahneyi 3 saniyeliğine dondurmaktayız (Thread sleep).
         try:
-            time.sleep(3)
+            time.sleep(1)
         except KeyboardInterrupt:  # Klavyeden bir kesme sinyali gelirse exit ile sisteme döneceğiz
             sys.exit()
 
@@ -48,7 +48,7 @@ def setup():
     cells = {}
     for x in range(SCREEN_WIDTH):
         for y in range(SCREEN_HEIGHT):
-            if random.randint(0, 10) == 0:
+            if random.randint(0, 5) == 0:
                 cells[(x, y)] = ALIVE
             else:
                 cells[(x, y)] = DEAD
