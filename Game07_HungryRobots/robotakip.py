@@ -29,8 +29,23 @@ def main():
     ghosts = addGhosts(board)
     # oyuncu için müsait başlangıç pozisyonu bulunur
     player_location = findFreeLoc(board, ghosts)
-    # oyun sahası ekrana çizilir
-    displayBoard(board, ghosts, player_location)
+
+    while True:
+        # oyun sahası ekrana çizilir
+        displayBoard(board, ghosts, player_location)
+
+        if len(ghosts) == 0:
+            print('''
+                Ortada hiç hayalet kalmadı. 
+                Kazandın dostum :)
+
+                Yine gel!!!
+                    ''')
+            sys.exit()
+
+        player_location = move(board, ghosts, player_location)
+
+        displayBoard(board, ghosts, player_location)
 
 
 '''
@@ -114,6 +129,12 @@ def displayBoard(board, ghost, player_position):
                 print(EMPTY_SPACE, end='')
         print(
         )  # Dış döngünün satırıdır. İlk satırdaki karakterlerin yerleşimi bitince alt satıra geçilir.
+    print()
+
+
+'''
+    Hayaletleri parametre olarak gelen güncel oyun sahasına ekleyen fonksiyon
+'''
 
 
 def addGhosts(board):
@@ -122,6 +143,79 @@ def addGhosts(board):
         x, y = findFreeLoc(board, ghosts)
         ghosts.append((x, y))
     return ghosts
+
+
+'''
+
+    Oyuncuya bir sonraki hamlesinin ne olacağını soran ve uygun lokasyonu döndüren fonksiyondur.
+    W yukarı, A sola, D sağa, X aşağıya, S ise olduğun yerde kal hamlelerini temsil eder.
+'''
+
+
+def move(board, ghosts, player_location):
+    #İlk olarak parametre olarak gelen güncel oyuncu konumundan x,y değerleri alınır
+    pX, pY = player_location
+
+    # w değişkenin W olma şartı yukarı harekette bir engelle karşılaşılmama halidir. Aksi durumda w değişkenine boşluk atanır.
+    # aynı koşul a,d,x ile yapılmak istenen hareketler için de kontrol edilir.
+    w = 'W' if isEmpty(pX, pY - 1, board, ghosts) else ' '
+    a = 'A' if isEmpty(pX - 1, pY, board, ghosts) else ' '
+    d = 'D' if isEmpty(pX + 1, pY, board, ghosts) else ' '
+    x = 'X' if isEmpty(pX, pY + 1, board, ghosts) else ' '
+    # allMoves içinde ardışıl olarak sadece hareket edilebilecek yerlere ait bilgiler yer alacaktır.
+    # allMoves değişkenini aşağıdaki döngüde geriye uygun hareket alanını dönerken kullanmaktayız.
+    allMoves = (w + a + d + x + 'S')
+
+    # Sonsuz döngüde oyuncunun hareket edebileceği alanlara göre kullanabileceği tuşları göstermekteyiz.
+    # Kullanabileceği tuşlar yukarıda tespit edilmişti.
+    # Ayrıca T harfine basarsa boş ve rastgele bir lokasyona ışınlanması da söz konusu.
+    while True:
+        print(
+            colored(
+                '''
+        {} kez ışınlanabilirsin. Tahnin et hangi harfe basınca ışınlacaksın...'
+        Hareket edebileceğin yerler şöyle.
+
+                ({})
+        ({}) -   (S) -  ({})
+                ({})
+        
+        Hamleni görelim.
+        Çıkmak için YETER yazman yeter :D
+        
+        '''.format(board["teleports"], w, a, d, x), "yellow"))
+
+        # Oyuncudan hangi hamleyi yapacağını öğreniyoruz.
+        player_move = input('..:').upper()
+        # eğer yeter yazarsa oyundan çıkılır
+        if player_move == "YETER":
+            sys.exit()
+        # eğer T harfine basmış ve board isimli dictionary koleksiyonunda(ki metoda parametre olarak gelir)
+        # kullanılabilir sayıda teleport hakkı varsa boş bir lokasyon bulup üretilen x,y değerlerini döndürüyoruz
+        elif player_move == 'T' and board["teleports"] > 0:
+            board["teleports"] -= 1
+            return findFreeLoc(board, ghosts)
+        # Yukarıdaki koşullar haricinde bir durumda, geçerli bir hamle girilmiş ve bu hamle(basılan tuş)
+        # oyuncunun hareket edebileceği yerleri işaret eden allMoves metninde varsa
+        # { } arasındaki hareket noktalarından oyuncunun seçtiği yöne doğru olanın x,y bilgisini dönüyoruz.
+        elif player_move != '' and player_move in allMoves:
+            # return kısmında bir dictionary koleksiyonu oluşturulur
+            # ve [] operatörü ile oyuncunun hamlesine denk düşen ikili (tuş ve x,y koordinatını taşıyan tuple) döndürülür
+            return {
+                'W': (pX, pY - 1),
+                'A': (pX - 1, pY),
+                'D': (pX + 1, pY),
+                'X': (pX, pY + 1),
+                'S': (pX, pY)
+            }[player_move]
+        else:
+            # tedbir amaçlı yukarıdaki koşullara uymayan bir durum varsa duvara denk düştüğümüzü varsayıp
+            # olduğu yerde hamle yapmasını sağlayabiliriz.
+            return (pX, pY)
+
+
+def isEmpty(x, y, board, ghosts):
+    return board[(x, y)] == EMPTY_SPACE and (x, y) not in ghosts
 
 
 if __name__ == '__main__':
