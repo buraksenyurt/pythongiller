@@ -161,12 +161,30 @@ Oyundan bir görüntü.
 
 __Game07_HungryRobots/robotakip.py__
 
-Bu sefer seçtiğim oyun oldukça eğlenceliye benziyor. Oyun sahasında yer alan belli sayıda robot oyuncuyu kovalıyor. Amaç onlara yakalanmadan hayatta kalmak. Robotlar birbirlerine çarptığında veya ölü robotlara çarptığında yok olabiliyorlar. Oyun sahasında robotlar dışında duvarlar da var. Oyuncunun teleporter'ı da bulunuyor ve isterse sahada rastgele bir konuma ışınlanabiliyor. Ben senaryoda robot yerine hayalet, ölü robot yerine bir avcı kavramlarını kullanmayı planlıyorum. Oyuncunun hayatta kaldığı durumları da puanlayarak bir skor sistemi eklemek istiyorum.
+Bu sefer seçtiğim oyun oldukça eğlenceliye benziyor. Oyun sahasında yer alan belli sayıda robot oyuncuyu kovalıyor. Amaç onlara yakalanmadan hayatta kalmak. Robotlar birbirlerine çarptığında veya ölü robotlara çarptığında yok oluyorlar. Oyun sahasında robotlar dışında duvarlar da var. Oyuncunun teleporter'ı da bulunuyor ve isterse sahada rastgele bir konuma ışınlanabiliyor. Ben senaryoda robot yerine hayalet, ölü robot yerine avcı kavramlarını kullanmayı planlıyorum. Oyuncunun hayatta kaldığı durumları da puanlayarak bir skor sistemi eklemek istiyorum. Hayaletler birbirlerine çarptığında veya bir avcı hayaletle karşılaştığında aslında avcı hayalete dönüşüp oldukları yerde kalıyorlar. Oyuncu duvarları kullanıp saklanır ve X'leri birbirlerine çarptırıp sahada hiç canlı hayalet kalmayana kadar devam edebilirse oyunu kazanmış sayılıyor. Oyun ekrana sahayı ve güncel konumlarına göre karakterleri çizip oyuncudan sonraki hamlesini bekliyor. Oynayabileceği hamleleri de A,S,D,W,X kombinasyonlarına göre yerleştirir.
 
+İşte birkaç ekran görüntüsü.
 
+![./assets/game07_1.png](./assets/game07_1.png)
+
+![./assets/game07_2.png](./assets/game07_2.png)
+
+![./assets/game07_3.png](./assets/game07_3.png)
+
+İlk kodlarda oyunu kazanmakta zorlandığım için azcık sabit değerlerle oynadım ve volaaa!!!
+
+![./assets/game07_4.png](./assets/game07_4.png)
+
+Tüh yahu...
+
+![./assets/game07_5.png](./assets/game07_5.png)
 
 ### Öğrenilenler
 
-- chr fonksiyonu ile decimal değerin karşılığı olan bir unicode karakteri elde edebiliriz.
-- Bir for döngüsündeki sayaç değerini kullanmıyorsak _ operatörü ile onu kullanmayacağımızı belirtebiliriz.
+- _chr_ fonksiyonu ile decimal değerin karşılığı olan bir unicode karakteri elde edebiliriz.
+- Bir _for_ döngüsündeki sayaç değerini kullanmıyorsak _ operatörü ile onu kullanmayacağımızı belirtebiliriz.
 - Aynı ifadede birden fazla atamayı ardışıl = operatörleri kullanarak sağlayabiliriz. _(x=y=z=3.14 gibi)_
+- Bir tuple'ın değerlerini eşitliğin sol tarafındaki ayrı değişkenlere alabiliriz.
+- Döngüde herhangi bir koşul sebebiyle sonraki iterasyona devam etmek için _continue_ operatörünü kullanabiliriz.
+- Diziden eleman çıkarmak için _del_ fonksiyonundan yararlanabiliriz.
+- Bir listeden _remove_ fonksiyonu ile öğe çıkarabilir _append_ ile de ekleyebiliriz.
