@@ -1,12 +1,12 @@
 import random, sys, time
-from termcolor import colored
+from termcolor import COLORS, colored
 '''
     Oyun sahasının uzunluğu, yüksekliği, hayalet sayısı, teleport sayısı, avcı hayalet sayısı,
     duvar sayısı, ve karakter sembolleri ile ilgili sabit tanımlamaları yapılıyor.
 '''
 BOARD_WITH = 70
 BOARD_HEIGHT = 20
-GHOST_COUNT = 20
+GHOST_COUNT = 10
 TELEPORT_COUNT = random.randint(1, 4)
 HUNTER_GHOSTS_COUNT = 2
 WALL_COUNT = 100
@@ -30,22 +30,41 @@ def main():
     # oyuncu için müsait başlangıç pozisyonu bulunur
     player_location = findFreeLoc(board, ghosts)
 
+    score = 1
+    # Oyununu bitirilme koşulları sağlanıncaya kadar devam eden sonsuz döngüsü
     while True:
         # oyun sahası ekrana çizilir
-        displayBoard(board, ghosts, player_location)
+        displayBoard(board, ghosts, player_location, score)
 
+        # Oyunda hiç hayalet kalmadıysa kazanmışızdır
         if len(ghosts) == 0:
             print('''
                 Ortada hiç hayalet kalmadı. 
-                Kazandın dostum :)
+                Oyunu {} puanla kazandın dostum :)
 
                 Yine gel!!!
-                    ''')
+                    '''.format(score))
             sys.exit()
 
+        # oyuncunun sonraki hamlesi ile yeni lokasyonu çekilir.
         player_location = move(board, ghosts, player_location)
+        # hayaletler oyuncunun yeni lokasyonuna ve sağ kalma durumlarına göre oyun sahasında yeniden konumlanır.
+        ghosts = catchPlayer(board, ghosts, player_location)
 
-        displayBoard(board, ghosts, player_location)
+        # hayalet listesi dolaşılır ve oyuncunun koordinatları ile denk gelen olup olmadığına bakılır
+        # denk gelinen varsa oyun kaybedilmiştir.
+        for x, y in ghosts:
+            if (x, y) == player_location:
+                displayBoard(board, ghosts, player_location, score)
+                print(
+                    colored(
+                        '\nÜzgünüm ama hayaletler tarafından yakalandın :/\n',
+                        'red',
+                        attrs=['blink']))
+                sys.exit()
+
+        score += 1
+        # displayBoard(board, ghosts, player_location)
 
 
 '''
@@ -113,8 +132,10 @@ def findFreeLoc(board, ghosts):
 '''
 
 
-def displayBoard(board, ghost, player_position):
+def displayBoard(board, ghost, player_position, score):
     # Tüm tahtayı dolaşan iki boyutlu döngü (x,y)'nin ne olduğun bakar ve print işlemi gerçekleştirir.
+    print(colored('SKOR =====> {}', 'cyan').format(score))
+
     for y in range(BOARD_HEIGHT):
         for x in range(BOARD_WITH):
             if board[(x, y)] == WALL:
@@ -212,6 +233,70 @@ def move(board, ghosts, player_location):
             # tedbir amaçlı yukarıdaki koşullara uymayan bir durum varsa duvara denk düştüğümüzü varsayıp
             # olduğu yerde hamle yapmasını sağlayabiliriz.
             return (pX, pY)
+
+
+'''
+    Hayaletlerin oyuncuyu yakalaması için gerekli hamlelerini yapan fonksiyon.
+    Parametre olarak board'un son durumunu, güncel hayalet ve oyuncu lokasyonlarını alır.
+'''
+
+
+def catchPlayer(board, ghost_locations, player_location):
+    # Oyuncunun x,y koordinatlarını alıyoruz
+    pX, pY = player_location
+    # Hayaletlerin bir sonraki konumlarını toplayacağımız dizi
+    ghosts_next_locations = []
+
+    # tüm hayalet lokasyonları dolaşılana kadar sürecek bir döngü başlatıyoruz.
+    for loc in ghost_locations:
+        # Hayaletin x,y koordinatlarını alıyoruz
+        gX, gY = loc
+        # oyuncu ile hayaletin x koordinatlarını kıyaslayıp x için bir hareket değeri belirtiyoruz.
+        # ileri, geri veya olduğun yerde kal gibi.
+        # Unutmayalım, hayaletler oyuncuyu kovalamak için gerekli x,y bilgilerine ihtiyaç duyuyor.
+        if gX < pX:
+            moveX = 1
+        elif gX > pX:
+            moveX = -1
+        elif gX == pX:
+            moveX = 0
+
+        # yukarıda x ekseni için yaptığımız işlemi y ekseni için de yapıyoruz.
+        if gY < pY:
+            moveY = 1
+        elif gY > pY:
+            moveY = -1
+        elif gY == pY:
+            moveY = 0
+
+        # hayalatin yeni moveX ve moveY değerleri ile gideceği yerde bir duvar olup olmadığına bakıyoruz
+        # duvar varsa hangi yöne doğru serbestçe hareket edebileceğini buluyoruz
+        if board[(gX + moveX, gY + moveY)] == WALL:
+            if board[(gX + moveX, gY)] == EMPTY_SPACE:
+                moveY = 0
+            elif board[(gX, gY + moveY)] == EMPTY_SPACE:
+                moveX = 0
+            # hiçbirine uymuyorsa bulunduğu yerde bırakıyoruz.
+            else:
+                moveX, moveY = 0, 0
+
+        # hayaletin gideceği koordinatları set ediyoruz
+        gXnew, gYnew = gX + moveX, gY + moveY
+
+        # Eğer hayaletin olası konumlarına bir avcı denk geliyorsa döngünün sonraki aşamasından devam ediyoruz.
+        if (board[(gX, gY)] == GHOST_HUNTER
+                or board[(gXnew, gYnew)] == GHOST_HUNTER):
+            continue
+
+        # Pek tabii hayaletin yeni konumlarında karşısına avcılar çıkmışsa sonraki tahtanın içeriğini tutan listeden de onları çıkarıyoruz.
+        # Ama avcılar çıkmamışsa oyun sahasının sonraki versiyonunda hayaleti konumlandırıyoruz.
+        if (gXnew, gYnew) in ghosts_next_locations:
+            board[(gXnew, gYnew)] = GHOST_HUNTER
+            ghosts_next_locations.remove((gXnew, gYnew))
+        else:
+            ghosts_next_locations.append((gXnew, gYnew))
+
+    return ghosts_next_locations
 
 
 def isEmpty(x, y, board, ghosts):
