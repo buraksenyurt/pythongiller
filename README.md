@@ -157,9 +157,9 @@ Oyundan bir görüntü.
 - random.choise fonksiyon ile parametre olarak gelen dilimden herhangi birisinin alınmasını sağlayabiliriz.
 - 0 ve 1 arasında üretilen rastgele bir sayıyı yüzdesel olarak olasılık hesabına katabiliriz.
 
-## Robotlar Peşimde _(Hungry Robots)_
+## Hayaletler Peşimde _(Hungry Robots)_
 
-__Game07_HungryRobots/robotakip.py__
+__Game07_HungryRobots/ruhakip.py__
 
 Bu sefer seçtiğim oyun oldukça eğlenceliye benziyor. Oyun sahasında yer alan belli sayıda robot oyuncuyu kovalıyor. Amaç onlara yakalanmadan hayatta kalmak. Robotlar birbirlerine çarptığında veya ölü robotlara çarptığında yok oluyorlar. Oyun sahasında robotlar dışında duvarlar da var. Oyuncunun teleporter'ı da bulunuyor ve isterse sahada rastgele bir konuma ışınlanabiliyor. Ben senaryoda robot yerine hayalet, ölü robot yerine avcı kavramlarını kullanmayı planlıyorum. Oyuncunun hayatta kaldığı durumları da puanlayarak bir skor sistemi eklemek istiyorum. Hayaletler birbirlerine çarptığında veya bir avcı hayaletle karşılaştığında aslında avcı hayalete dönüşüp oldukları yerde kalıyorlar. Oyuncu duvarları kullanıp saklanır ve X'leri birbirlerine çarptırıp sahada hiç canlı hayalet kalmayana kadar devam edebilirse oyunu kazanmış sayılıyor. Oyun ekrana sahayı ve güncel konumlarına göre karakterleri çizip oyuncudan sonraki hamlesini bekliyor. Oynayabileceği hamleleri de A,S,D,W,X kombinasyonlarına göre yerleştirir.
 
@@ -188,3 +188,29 @@ Tüh yahu...
 - Döngüde herhangi bir koşul sebebiyle sonraki iterasyona devam etmek için _continue_ operatörünü kullanabiliriz.
 - Diziden eleman çıkarmak için _del_ fonksiyonundan yararlanabiliriz.
 - Bir listeden _remove_ fonksiyonu ile öğe çıkarabilir _append_ ile de ekleyebiliriz.
+
+## Çarpanlarımı Bil _(Factor Finder)_
+
+__Game08_FactorFinder/carpbul.py__
+
+Seçtiğim bir sonraki bölüm bir sayının çarpanlarını bulmak için tasarlanış. İlerleyen kısımlarda asal sayı bulma oyununda kullanılacağı için önce buna bakmak istedim. İşleyiş şöyle; oyuncudan bir sayı girmesi isteniyor ve program bu sayının çarpanlarını söylüyor. Belki bunu biraz daha eğlenceli hale getirebiliriz. Program oyuncuya bir sayı verip çarpanlarını söylemesini isteyebilir. Hatta doğru cevap bulana kadar ki zamanı da ölçüp bir puanlama yapsın ;) Tabii başlamadan önce bir sayının çarpanları nasıl bulunur konusuna bakmakta yarar var. Teorik olarak bir sayının 1 ve kareköküne kadar olan tam bölenlerini çarpanları olarak düşünebiliriz.
+
+İşte oyundan birkaç görüntü.
+
+![./assets/game08_1.png](./assets/game08_1.png)
+
+![./assets/game08_2.png](./assets/game08_2.png)
+
+### Öğrenilenler
+
+- Anlık zaman bilgisi için _time_ modülünde _time_ fonksiyonunu kullanabilir, t1 ve t2 arasındaki farkı saniye cinsinden elde edebiliriz.
+- _int_ operatörü ile kayan noktalı bir sayının küsürat sonrası sıfıra yuvarlanarak dönüştürülmüş halini elde edebiliriz.
+- Bir bölme işleminde küsüratı komple atmak için _//_ operatöründen yararlanabiliriz.
+- Bir sayının karekökünü elde etmek için _math_ modülünün _sqrt_ fonksiyonu kullanılabilir.
+- _set(iterable özellikte nesne)_ ile iterasyon özelliği sunan bir nesnenin elemanlarının düzensiz sırada ama tekrarsız halini elde edebiliriz. 
+- Bir listenin elemanlarını sıralamak için sort metodunu kullanabiliriz.
+- _enumerate(iterable özellikte nesne)_ fonksiyonu ile bir nesne dizisi üstünden ileri yönlü hareket etmemizi sağlayacak fonksiyonelliği elde edebiliriz. Enumerate, indis ve elemanın kendisinden oluşan çiftleri kullanmamıza izin verir.
+- _str(any)_ ile sayısal bir içeriği string türe dönüştürebiliriz.
+- _join_ fonksiyonu ile _iterable_ özellikteki bir _string_ dizisi elemanlarını ilgili karakterle birleştirerek yeni bir metin katarı oluşturabiliriz.
+- Belli bir aralıkta yürüyecek _for_ döngüsü oluşturmak için _range_ fonksiyonundan yararlanabiliriz.
+- Güncel thread'i belli süre duraksatmak için _time_ modülünün _sleep_ fonksiyonunu kullanabiliriz.
