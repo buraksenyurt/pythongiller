@@ -22,43 +22,52 @@ def main():
         
         Eğer sıkılırsan HOF POF yaz.
 
-        Hazır olduğunda herhangi bir tuşa bas.
+        Hazır olduğunda herhangi bir tuşa bas ve süren başlasın ;)
     ''', "yellow"))
     input()
+
+    # Başlangıç zamanını alalım
+    start = time.time()
 
     # 1 ile 100 arası rastgele sayı üretiyoruz
     number = random.randint(1, 100)
 
+    isCompCalculate = False
+    formatedFactors = ""
     # Oyunun olmazsa olmaz sonsuz döngüsü
     while True:
-        # Başlangıç zamanını alalım
-        start = time.time()
+
         print(colored('Sayımız : {}'.format(number), 'green'))
         # oyuncunun tahminini istiyoruz
-        player_guess = input('..:')
+        playerGuess = input('..:')
 
         # Önce oyuncunun girdiği bilgiyi kontrol ediyoruz. HOF POF yazarsa sisteme çıkıyoruz.
-        if player_guess.upper() == "HOF POF":
+        if playerGuess.upper() == "HOF POF":
             print(colored('Yine gelllll', 'yellow'))
             sys.exit()
 
-        # Bilgisayar o sırada çarpanları buluyor
-        factors = findFactors(number)
-        # Formatlı halini de hesaplatalım.
-        formated_factors = displayFactors(factors)
-        print('İzninle bende çarpanları hesap edeceğim')
-        doWaitEffect()
+        # Hesaplamayı, çark efektini ve çıktının formatlı versiyonunu bir kere çalıştırmak için isCompCalculate isimli boolean bir değişken kullanıyoruz
+        if not isCompCalculate:
+            # Bilgisayar o sırada çarpanları buluyor
+            factors = findFactors(number)
+            # Formatlı halini de hesaplatalım.
+            formatedFactors = displayFactors(factors)
+            print('İzninle bende çarpanları hesap edeceğim')
+            doWaitEffect()
+            isCompCalculate = True
 
         # Oyuncusun girdiği sayı ile programın hesapladığı ifadeyi kıyaslıyoruz.
         # İfadeler doğruysa programdan çıkıyoruz.
-        if formated_factors == player_guess:
+        if formatedFactors == playerGuess:
             # Oyuncunun ne kadar sürede doğru cevabı bulduğunu hesaplıyoruz
             end = time.time()
-            duration = int(end - start)
+            duration = int(end - start) - 6
             print(
                 colored(
                     'BİLDİN!!! Bunun için geçen süre yaklaşık {} saniye.\a'.
-                    format(duration), 'green'))
+                    format(duration),
+                    'cyan',
+                    attrs=["bold", "reverse"]))
 
             sys.exit()
         else:
@@ -82,7 +91,7 @@ def main():
 
         Benimle oynadığın için teşekkürler ;)
                 
-                '''.format(formated_factors), 'yellow'))
+                '''.format(formatedFactors), 'yellow'))
                 sys.exit()
 
 
