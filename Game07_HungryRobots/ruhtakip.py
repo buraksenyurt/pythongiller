@@ -1,4 +1,4 @@
-import random, sys, time
+import random, sys
 from termcolor import COLORS, colored
 '''
     Oyun sahasının uzunluğu, yüksekliği, hayalet sayısı, teleport sayısı, avcı hayalet sayısı,
