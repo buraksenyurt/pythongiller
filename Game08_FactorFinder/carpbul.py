@@ -31,6 +31,8 @@ def main():
 
     # Oyunun olmazsa olmaz sonsuz döngüsü
     while True:
+        # Başlangıç zamanını alalım
+        start = time.time()
         print(colored('Sayımız : {}'.format(number), 'green'))
         # oyuncunun tahminini istiyoruz
         player_guess = input('..:')
@@ -50,7 +52,14 @@ def main():
         # Oyuncusun girdiği sayı ile programın hesapladığı ifadeyi kıyaslıyoruz.
         # İfadeler doğruysa programdan çıkıyoruz.
         if formated_factors == player_guess:
-            print(colored('BİLDİN!!!\a', 'green'))
+            # Oyuncunun ne kadar sürede doğru cevabı bulduğunu hesaplıyoruz
+            end = time.time()
+            duration = int(end - start)
+            print(
+                colored(
+                    'BİLDİN!!! Bunun için geçen süre yaklaşık {} saniye.\a'.
+                    format(duration), 'green'))
+
             sys.exit()
         else:
             print(
