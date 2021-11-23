@@ -236,6 +236,17 @@ __Game09_CollatzSequence/collatzgibidusun.py__
 
 Oyundan birkaç görüntü.
 
+![./assets/game09_1.png](./assets/game09_1.png)
+
+![./assets/game09_2.png](./assets/game09_2.png)
+
+![./assets/game09_3.png](./assets/game09_3.png)
+
+![./assets/game09_4.png](./assets/game09_4.png)
+
 ### Öğrenilenler
 
-- 
+- Bir text dosya satır satır nasıl okunur ve Türkçe karakterler ekrana sorunsuz nasıl basılır.
+- Bir fonksiyondan birden fazla değer döndürebiliriz.
+- Birden fazla değer dönen fonksiyonların sonuçlarını tek satırda n sayıda değişkene atayabiliriz.
+- String bir değeri tamsayıya dönüştürmek için int fonksiyonunu kullanabiliriz.
