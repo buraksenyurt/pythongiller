@@ -214,3 +214,28 @@ Seçtiğim bir sonraki bölüm bir sayının çarpanlarını bulmak için tasarl
 - _join_ fonksiyonu ile _iterable_ özellikteki bir _string_ dizisi elemanlarını ilgili karakterle birleştirerek yeni bir metin katarı oluşturabiliriz.
 - Belli bir aralıkta yürüyecek _for_ döngüsü oluşturmak için _range_ fonksiyonundan yararlanabiliriz.
 - Güncel thread'i belli süre duraksatmak için _time_ modülünün _sleep_ fonksiyonunu kullanabiliriz.
+
+## Collatz Gibi Düşün _(Collatz Sequence)_
+
+Alman matematikçi Lothar Collatz 1932'de henüz 20li yaşların başında iken değişik bir sayı dizisi keşfetmiş. Hatta öyle bir sayı dizisi ki tüm pozitif sayılar için geçerliliği henüz ispatlanamamış. Olay oldukça basit. Sıfırdan büyük bir pozitif sayı alıyoruz. Çift sayı ise ikiye bölüyor, tek sayı ise üçle çarpıp bir ekliyoruz ve bu şekilde sıralamadaki sonraki sayıyı elde ediyoruz. Aynı işlemleri elde edilen yeni sayıya da uyguluyoruz. Collatz'ın keşfi ise şu; sıralama en nihayetinde 1 rakamı ile bir yerde sonlanıyor ve hatta 4,2,1,4 döngüsüyle devam etmeye başlıyor. 
+
+n=7 için bakalım.
+
+- 7 tek sayıdır. Dolayısıyla sonraki sayı (7 * 3) + 1 = 22 olur.
+- 22 çift sayıdır ve sonraki sayı 22 / 2 = 11 olur.
+- 11 tek sayıdır ve sonraki sayı (11 * 3) + 1 = 34 olur.
+- 34 çift sayıdır ve sonraki sayı 17 olur.
+
+Bu şekilde devam edersek aşağıdaki diziyi elde ederiz.
+
+17, 52, 36, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1.
+
+Kitapta bu teoreme göre bir oyun yazdırılmakta. Ben biraz daha değiştirip eğlenceyi artırmaya çalışacağım :) Bilgisayar 1 ile 100 arasında rastgele bir sayı söyleyecek. Oyuncudan Collatz sıralamasına göre kaç adımda 1 sayısına ulaşılacağını tahmin etmesini isteyecek. Bilirse kazanır bilemezse kaybeder ve isterse yeni bir rastgele sayı ile oyuna devam eder. Terminalden oyuncuya Collatz problemini anlatan bir yardım dokümanı hizmeti de sunabilirim.
+
+__Game09_CollatzSequence/collatzgibidusun.py__
+
+Oyundan birkaç görüntü.
+
+### Öğrenilenler
+
+- 
