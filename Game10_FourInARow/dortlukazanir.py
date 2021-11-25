@@ -65,9 +65,9 @@ def main():
         board[playerMove] = playerTurn
 
         # Hamle sonrası kazanan var mı kontrolü yapılan yer.
-        if checkWinner(playerMove, board):
+        if checkWinner(playerTurn, board):
             showBoard(board)
-            print(colored('{} kazandı !!!', playerMove, 'blue'))
+            print(colored('{} kazandı !!!'.format(playerTurn), 'blue'))
             sys.exit()
         # Eğer kazanan yoksa ve oyun tahtası tamamen dolmuşsa beraberlik durumu söz konusudur.
         elif isFull(board):
