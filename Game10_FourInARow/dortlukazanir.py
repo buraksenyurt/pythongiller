@@ -5,25 +5,29 @@ from termcolor import colored
 EMPTY_BLOCK = ' '  # Tahtadaki boş kısımlar boşluk ile gösterilir.
 PLAYER_1 = 'X'  # Birinci oyuncunun pulları X ile gösterilir.
 PLAYER_2 = 'O'  # İkinci oyuncunun pulları O ile gösterilir.
-BOARD_COLUMNS = 7  # 7 sütundan ve 6 satırdan oluşacak bir oyun tahtası söz konusu
+BOARD_COLUMNS = 5  # 6 sütundan ve 6 satırdan oluşacak bir oyun tahtası söz konusu
 BOARD_ROWS = 6
 COLUMN_LABELS = (
-    'A', 'B', 'C', 'D', 'E', 'F', 'G'
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
 )  # Oyuncunun pulu hangi sütuna atacağını gösteren yardımcı değerleri tutan tuple
 
 # Oyun tahtasının string gösterimi
 # Tahmin edileceği üzere {} ile ifade edilen placeholder'lar bordun o anki durumuna göre oyuncu hamleleri ile dolacaktır
 BOARD = colored(
     '''
- ABCDEFG
-+-------+
-|{}{}{}{}{}{}{}|
-|{}{}{}{}{}{}{}|
-|{}{}{}{}{}{}{}|
-|{}{}{}{}{}{}{}|
-|{}{}{}{}{}{}{}|
-|{}{}{}{}{}{}{}|
-+-------+''', 'yellow')
+ ABCDE
++-----+
+|{}{}{}{}{}|
+|{}{}{}{}{}|
+|{}{}{}{}{}|
+|{}{}{}{}{}|
+|{}{}{}{}{}|
+|{}{}{}{}{}|
++-----+''', 'yellow')
 
 # assert ile kod içerisinde bazı test kabüllerini çalıştırabiliriz.
 # assert len(COLUMN_LABELS) == BOARD_COLUMNS
