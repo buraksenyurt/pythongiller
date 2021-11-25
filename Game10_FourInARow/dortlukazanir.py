@@ -15,7 +15,7 @@ COLUMN_LABELS = (
 # Tahmin edileceği üzere {} ile ifade edilen placeholder'lar bordun o anki durumuna göre oyuncu hamleleri ile dolacaktır
 BOARD = colored(
     """
-ABCDEFG
+ ABCDEFG
 +-------+
 |{}{}{}{}{}{}{}|
 |{}{}{}{}{}{}{}|
@@ -56,6 +56,7 @@ def main():
     board = getEmptyBoard()
     # Hangi oyuncunun başlayacağını seçmiştik.
     playerTurn = players[number]
+    showBoard(board)
 
 
 '''
@@ -72,6 +73,27 @@ def getEmptyBoard():
             board[(j, i)] = EMPTY_BLOCK
     # Boş oyun tahtasını hazırladıktan sonra çağıran yere döndürüyoruz.
     return board
+
+
+'''
+    Oyun tahtasını ekrana çizen fonksiyondur.
+    Parametre olarak oyun tahtasının güncel içeriğini alır.
+'''
+
+
+def showBoard(board):
+    # Oyuncuların yaptıkları hamlelere göre board'un durumu sıklıkla değişecektir.
+    # Bu nedenle oyun tahtasını güncel durumuna göre terminale çizdirmeliyiz.
+
+    # Tahtanın güncel halini tutacak dizi
+    stones = []
+    # oyun tahtasının yani BOARD'un satır ve sütunlarında dolaşacak içi içe döngü
+    for i in range(BOARD_ROWS):
+        for j in range(BOARD_COLUMNS):
+            # metoda parametre olarak gelen board'un satır X sütun konumundaki elemanı stones dizisine ekler
+            stones.append(board[(j, i)])
+    # BOARD şablonundaki placeholder'ların içeriği stones dizisi elemanları ile değiştirilir.
+    print(BOARD.format(*stones))
 
 
 if __name__ == '__main__':
