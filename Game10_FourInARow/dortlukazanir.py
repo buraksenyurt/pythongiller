@@ -1,10 +1,10 @@
 import sys, random
-from termcolor import COLORS, colored
+from termcolor import colored
 
 # Oyunda kullanacağımı sabitler
 EMPTY_BLOCK = ' '  # Tahtadaki boş kısımlar boşluk ile gösterilir.
-PLAYER_1 = colored('X', 'cyan')  # Birinci oyuncunun pulları X ile gösterilir.
-PLAYER_2 = colored('O', 'blue')  # İkinci oyuncunun pulları O ile gösterilir.
+PLAYER_1 = 'X'  # Birinci oyuncunun pulları X ile gösterilir.
+PLAYER_2 = 'O'  # İkinci oyuncunun pulları O ile gösterilir.
 BOARD_COLUMNS = 7  # 7 sütundan ve 6 satırdan oluşacak bir oyun tahtası söz konusu
 BOARD_ROWS = 6
 COLUMN_LABELS = (
@@ -14,7 +14,7 @@ COLUMN_LABELS = (
 # Oyun tahtasının string gösterimi
 # Tahmin edileceği üzere {} ile ifade edilen placeholder'lar bordun o anki durumuna göre oyuncu hamleleri ile dolacaktır
 BOARD = colored(
-    """
+    '''
  ABCDEFG
 +-------+
 |{}{}{}{}{}{}{}|
@@ -23,7 +23,7 @@ BOARD = colored(
 |{}{}{}{}{}{}{}|
 |{}{}{}{}{}{}{}|
 |{}{}{}{}{}{}{}|
-+-------+""", "yellow")
++-------+''', 'yellow')
 
 # assert ile kod içerisinde bazı test kabüllerini çalıştırabiliriz.
 # assert len(COLUMN_LABELS) == BOARD_COLUMNS
@@ -63,6 +63,41 @@ def main():
         showBoard(board)
         playerMove = askNextMove(playerTurn, board)
         board[playerMove] = playerTurn
+
+        # Hamle sonrası kazanan var mı kontrolü yapılan yer.
+        if checkWinner(playerMove, board):
+            showBoard(board)
+            print(colored('{} kazandı !!!', playerMove, 'blue'))
+            sys.exit()
+        # Eğer kazanan yoksa ve oyun tahtası tamamen dolmuşsa beraberlik durumu söz konusudur.
+        elif isFull(board):
+            showBoard(board)
+            print(colored('Kazanan yok. Oyun berabere :)', 'green'))
+            sys.exit()
+
+        # Buraya gelinmişse oyunda kazanan henüz belli değildir.
+        # Hamle sırası diğer oyuncuya geçer
+        print("Oyuncu " + playerTurn)
+        if playerTurn == PLAYER_1:
+            playerTurn = PLAYER_2
+        elif playerTurn == PLAYER_2:
+            playerTurn = PLAYER_1
+
+
+'''
+    Oyun tahtasında artık hamle yapılacak yer kalıp kalmadığını öğrendiğimiz fonksiyon.
+'''
+
+
+def isFull(board):
+    # Tüm oyun tahtası gezilir
+    for i in range(BOARD_ROWS):
+        for j in range(BOARD_COLUMNS):
+            # Eğer tahtanın herhangi bir hücresi boşsa false dönülür
+            if board[(j, i)] == EMPTY_BLOCK:
+                return False
+    # Buraya gelindiyse tüm hücreler dolu demektir. Beraberlik durumu.
+    return True
 
 
 '''
@@ -104,7 +139,7 @@ def askNextMove(player, board):
 
         # Eğer oyuncunun söylediği sütun doluysa tekrardan bir seçim yapmasını istiyoruz.
         if board[(column, 0)] != EMPTY_BLOCK:
-            print('Bu sütun dolu. Lütfen başka bir tane seç.')
+            print(colored('Bu sütun dolu. Lütfen başka bir tane seç.', 'red'))
             # döngüye devam et
             continue
 
@@ -114,6 +149,51 @@ def askNextMove(player, board):
         for row in range(BOARD_ROWS - 1, -1, -1):
             if board[(column, row)] == EMPTY_BLOCK:
                 return (column, row)
+
+
+'''
+    Hamlelere göre oyuncunun kazanıp kazanmadığını tespi eden fonksiyon.
+    Teorisi basit. İlk parametre ile oyuncunun sembolü gelir. X veya O.
+    Döngüler ikinci parametre ile gelen oyun tahtasını yatay, dikey ve çarpraz olarak kontrol eder.
+
+'''
+
+
+def checkWinner(symbol, board):
+    # Döngülerde satır ve sütunlar belli kriterlere göre dolaşılmakta.
+
+    # ilk döngüde aynı satırda ve sağa doğru ardışıl dört aynı pul var mı bakılıyor.
+    for column in range(BOARD_COLUMNS - 3):
+        for row in range(BOARD_ROWS):
+            stone1 = board[(column, row)]
+            stone2 = board[(column + 1, row)]
+            stone3 = board[(column + 2, row)]
+            stone4 = board[(column + 3, row)]
+            # dört pulda parametre olarak gelen sembol ise true döner
+            if stone1 == stone2 == stone3 == stone4 == symbol:
+                return True
+
+    # Bu döngüde ise aynı sütunda dikey olarak aynı dört pul var mı bakılıyor.
+    for column in range(BOARD_COLUMNS):
+        for row in range(BOARD_ROWS - 3):
+            stone1 = board[(column, row)]
+            stone2 = board[(column, row + 1)]
+            stone3 = board[(column, row + 2)]
+            stone4 = board[(column, row + 3)]
+            # dört pulda parametre olarak gelen sembol ise true döner
+            if stone1 == stone2 == stone3 == stone4 == symbol:
+                return True
+
+    # Hem satır hem sütun değiştirilerek bakılıyor. Yani çarprazda ardışıl aynı dört pul var mı buna bakılıyor.
+    for column in range(BOARD_COLUMNS - 3):
+        for row in range(BOARD_ROWS - 3):
+            stone1 = board[(column, row)]
+            stone2 = board[(column + 1, row + 1)]
+            stone3 = board[(column + 2, row + 2)]
+            stone4 = board[(column + 3, row + 3)]
+            # dört pulda parametre olarak gelen sembol ise true döner
+            if stone1 == stone2 == stone3 == stone4 == symbol:
+                return True
 
 
 '''
