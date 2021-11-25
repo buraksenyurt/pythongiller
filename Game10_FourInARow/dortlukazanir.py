@@ -48,7 +48,7 @@ def main():
 
     # Oyuna kimin başlayacağına program karar versin istedim.
     # players dizisinden 0 veya 1 sonucuna göre oyuncu seçilecek.
-    players = ["Oyuncu 1", "Oyuncu 2"]
+    players = ["X", "O"]
     number = random.randint(0, 1)
     print(colored("{} başlar!".format(players[number]), "magenta"))
 
@@ -56,7 +56,64 @@ def main():
     board = getEmptyBoard()
     # Hangi oyuncunun başlayacağını seçmiştik.
     playerTurn = players[number]
-    showBoard(board)
+
+    #showBoard(board)
+    # Bize kazanan belli oluncaya kadar devam edecek bir döngü gerekiyor.
+    while True:
+        showBoard(board)
+        playerMove = askNextMove(playerTurn, board)
+        board[playerMove] = playerTurn
+
+
+'''
+    Oyuncuya bir sonraki hamlesini soran fonksiyondur.    
+    Parametre olarak board'un güncel halini oyuncunun kendisini alır.
+    Uygun sütun söz konusu ise bu sütundaki uygun boşluğun koordinatlarını tuple olarak geriye döndüdür.
+'''
+
+
+def askNextMove(player, board):
+    # Sıradaki oyuncu fonksiyona playerName ile gelecek.
+    # Ona hamlesini soracağız. Doğru veya uygun hamleyi yapana kadar sormalıyız.
+    # Bu nedenle sonsuz döngü var.
+    while True:
+        print(
+            colored(
+                '{}, taşını hangi sütuna bırakacaksın? Çıkmak için YETER yaz:',
+                'green').format(player))
+        response = input('..: ').upper().strip()
+
+        # Eğer response YETER ise sisteme döneriz :D
+        if response == 'YETER':
+            print(colored('Oynadığın için teşekkürler :(', 'green'))
+            # Programdan çık
+            sys.exit()
+
+        # Oyuncunun girdiği bilgi COLUMN_LABES isimli Tuple içeriğinde yoksa bunu tekrar isteriz.
+        if response not in COLUMN_LABELS:
+            print(
+                colored(
+                    'Geçeri bir sütun girmedin. Şunlardan biri olmalı. {}.',
+                    'red').format(COLUMN_LABELS))
+            # while döngüsüne devam et
+            continue
+
+        # Eğer istenilen girdiye ulaşıldıysa onun index numarasını buluyoruz.
+        # Bunu oyun tahtasını ifade eden dictionary'de kullanmaktayız.
+        column = COLUMN_LABELS.index(response)
+
+        # Eğer oyuncunun söylediği sütun doluysa tekrardan bir seçim yapmasını istiyoruz.
+        if board[(column, 0)] != EMPTY_BLOCK:
+            print('Bu sütun dolu. Lütfen başka bir tane seç.')
+            # döngüye devam et
+            continue
+
+        # Buraya kadar gelindiyse oyuncunun girdiği sütun geçerlidir.
+        # Alt sütundan başlayarak (ekrana tersten bakmamız lazım) geriye doğru giden bir döngümüz var.
+        # Bulunan ilk boş hücrenin sütun ve satır bilgisini tutan Tuple'ı metottan geriye döndürüyoruz.
+        for row in range(BOARD_ROWS - 1, -1, -1):
+            if board[(column, row)] == EMPTY_BLOCK:
+                return (column, row)
 
 
 '''
