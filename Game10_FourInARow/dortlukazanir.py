@@ -13,7 +13,8 @@ COLUMN_LABELS = (
 
 # Oyun tahtasının string gösterimi
 # Tahmin edileceği üzere {} ile ifade edilen placeholder'lar bordun o anki durumuna göre oyuncu hamleleri ile dolacaktır
-BOARD = """
+BOARD = colored(
+    """
 ABCDEFG
 +-------+
 |{}{}{}{}{}{}{}|
@@ -22,7 +23,7 @@ ABCDEFG
 |{}{}{}{}{}{}{}|
 |{}{}{}{}{}{}{}|
 |{}{}{}{}{}{}{}|
-+-------+"""
++-------+""", "yellow")
 
 # assert ile kod içerisinde bazı test kabüllerini çalıştırabiliriz.
 # assert len(COLUMN_LABELS) == BOARD_COLUMNS
@@ -38,19 +39,39 @@ def main():
     Birinci oyuncunun pulu  X
     İkinci oyunucun pulu    0
 
-    Kimin başlayacak? Yazı/Tura. Seçiminizi yapın.
+    Kimin başlayacağını rastgele seçeceğim. 
+    Hanginiz birinci hanginiz ikinci karar verin.
 
     """, "yellow"))
 
-    # Yazı Tura oynatıp kimin başlayacağına karar verdiriyoruz.
-    # Basit bir if else bloğu da olabilirdi. Biraz renklendirelim dedim.
-    # 0 veya 1 gelmesine göre dizinden o indise ait eleman seçilir.
-    input('Para atışı yapıldı. Devam etmek için bir tuşa basın..:')
+    input('Devam etmek için bir tuşa basın..:')
 
-    choises = ["Yazı", "Tura"]
-    print(
-        colored("{} diyen başlar!".format(choises[random.randint(0, 1)]),
-                "magenta"))
+    # Oyuna kimin başlayacağına program karar versin istedim.
+    # players dizisinden 0 veya 1 sonucuna göre oyuncu seçilecek.
+    players = ["Oyuncu 1", "Oyuncu 2"]
+    number = random.randint(0, 1)
+    print(colored("{} başlar!".format(players[number]), "magenta"))
+
+    # Önce boş bir oyun tahtası hazırlanıyor
+    board = getEmptyBoard()
+    # Hangi oyuncunun başlayacağını seçmiştik.
+    playerTurn = players[number]
+
+
+'''
+    Ekrana oyun tahtasının ilk halini çizdirmek için kullanılan fonksiyondur.
+'''
+
+
+def getEmptyBoard():
+    # oyun tahtasını bir dictionary olarak tutacağız.
+    board = {}
+    # satır sütunları dolaşıp dictionary'deki herbir elemana EMPTY_BLOCK içeriğini basıyoruz.
+    for i in range(BOARD_ROWS):
+        for j in range(BOARD_COLUMNS):
+            board[(j, i)] = EMPTY_BLOCK
+    # Boş oyun tahtasını hazırladıktan sonra çağıran yere döndürüyoruz.
+    return board
 
 
 if __name__ == '__main__':
