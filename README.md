@@ -253,12 +253,31 @@ Oyundan birkaç görüntü.
 
 ## Dörtlüyü Bul Kazan _(Four in a row)_
 
-Kitaptan seçtiğim bir diğer oyunu görseli olmadan anlatmak kolay değil yine de deneyelim. Oyun iki oyuncuyla oynanıyor. Her birinin farklı renklerde ve aynı sayıda yuvarlak pulları var. Matris şeklinde dik duran bir alet söz konusu. Her oyuncu tahtanın üstünden kendi pulunu sırasıyla bırakıyor. Pullar dikey sütun boyunca boş olan yere iniyor. Aynı renkten yanyana dört tane pulu denk getiren oyuncu oyunu kazanıyor :)) Anlatması zor o yüzden terminaldeki versiyonuna geçelim.
+Kitaptan seçtiğim bir diğer oyunu görseli olmadan anlatmak kolay değil yine de deneyelim. Oyun iki oyuncuyla oynanıyor. Her birinin farklı renklerde ve aynı sayıda yuvarlak pulları var. Matris şeklinde dik duran bir alet söz konusu. Her oyuncu tahtanın üstünden kendi pulunu sırasıyla bırakıyor. Pullar dikey sütun boyunca boş olan yere iniyor. Aynı renkten yanyana dört tane pulu denk getiren oyuncu oyunu kazanıyor :)) Pullar yatayda, dikeyde veya çarprazda aynı sırada olabilirler. Anlatması zor o yüzden terminaldeki versiyonuna geçelim.
 
 __Game10_FourInARow/dortlukazanir.py__
 
 Oyuundan birkaç görüntü.
 
+![./assets/game10_1.png](./assets/game10_1.png)
+
+![./assets/game10_2.png](./assets/game10_2.png)
+
+![./assets/game10_3.png](./assets/game10_3.png)
+
+![./assets/game10_4.png](./assets/game10_4.png)
+
+![./assets/game10_5.png](./assets/game10_5.png)
+
+Kitapta belirtildiği gibi oyun tahtasının satır, sütun değerlerini değiştirdikten sonrası...
+
+![./assets/game10_6.png](./assets/game10_6.png)
+
+
 ### Öğrenilenler
 
-- 
+- Bir fonksiyona parametre olarak kaç tane değer geçeceğimiz bilemediğim durumlarda _*_ operatöründen yararlanabiliriz.
+- Bir tuple değerinin sıra numarasını yakalamak için _index_ fonksiyonundan yararlanabiliriz.
+- _for_ döngülerinde geriye doğru gitmek için _range(max,min,-1)_ formatını kullanabiliriz.
+- Ekrandan girilen metinsel ifadelerdeki boşlukları kaldırmak için _strip_ fonksiyonundan yararlanılabilir.
+- _print_ fonksiyonundaki placeholder' da _tuple_ türünü kullanabiliriz. Tüm tuple elemanları basılır.
