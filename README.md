@@ -250,3 +250,15 @@ Oyundan birkaç görüntü.
 - Bir fonksiyondan birden fazla değer döndürebiliriz.
 - Birden fazla değer dönen fonksiyonların sonuçlarını tek satırda n sayıda değişkene atayabiliriz.
 - String bir değeri tamsayıya dönüştürmek için int fonksiyonunu kullanabiliriz.
+
+## Dörtlüyü Bul Kazan _(Four in a row)_
+
+Kitaptan seçtiğim bir diğer oyunu görseli olmadan anlatmak kolay değil yine de deneyelim. Oyun iki oyuncuyla oynanıyor. Her birinin farklı renklerde ve aynı sayıda yuvarlak pulları var. Matris şeklinde dik duran bir alet söz konusu. Her oyuncu tahtanın üstünden kendi pulunu sırasıyla bırakıyor. Pullar dikey sütun boyunca boş olan yere iniyor. Aynı renkten yanyana dört tane pulu denk getiren oyuncu oyunu kazanıyor :)) Anlatması zor o yüzden terminaldeki versiyonuna geçelim.
+
+__Game10_FourInARow/dortlukazanir.py__
+
+Oyuundan birkaç görüntü.
+
+### Öğrenilenler
+
+- 
