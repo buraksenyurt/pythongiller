@@ -112,6 +112,13 @@ def main():
 
     # Oyuncunun seçtiği şehre göre şehirlerin listesini çekiyoruz
     cities = getCities(countries[code])
+    secretCity = random.choice(cities)
+    # print(secret_city)
+    missedLetters = []
+    correctLetters = []
+
+    # while True:
+    #     draw(missedLetters, correctLetters, secretCity)
 
 
 '''
@@ -161,6 +168,34 @@ def getCities(country):
 
     file.close()
     return cities
+
+
+'''
+    Oyuncunun girdiği harf tahminini aldığımız fonksiyon.
+'''
+
+
+def getPlayerGuess(letter):
+    # Oyuncudan ısrarla doğru bir harf girişi yapmasını istediğimiz için sonsuz bir döngü var
+    # Bilgi harf olmalı. Yani tek karakter ve alfa nümerik. Ayrıca daha önceden oyuncu tarafından söylenmemiş olmalı.
+    while True:
+        print(colored('Tahminin', 'magenta'))
+        guess = input('..:').upper()
+        if len(guess) != 1:
+            print(
+                colored('Sadece tek bir harf girmen gerekiyor dostum.', 'red'))
+        elif guess in letter:
+            print(
+                colored('Bu harfi söylemiştin. Lütfen başka bir tane söyle.',
+                        'red'))
+        elif not guess.isalpha():
+            print(colored('Lütfen harf gir.', 'red'))
+        else:
+            return guess
+
+
+# def draw(missed, correct, word):
+#     print('çizim')
 
 
 if __name__ == '__main__':
