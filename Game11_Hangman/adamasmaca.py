@@ -103,7 +103,7 @@ def main():
     print(
         colored(
             """
-        Güzel güzeli diyarlardan seçtiğin yer 
+        Güzel diyarlar arasında seçtiğin yer,
 
         {}
 
@@ -112,13 +112,62 @@ def main():
 
     # Oyuncunun seçtiği şehre göre şehirlerin listesini çekiyoruz
     cities = getCities(countries[code])
-    secretCity = random.choice(cities)
-    # print(secret_city)
+    secretCity = random.choice(cities).upper()
+
+    print(secretCity)
     missedLetters = []
     correctLetters = []
 
-    # while True:
-    #     draw(missedLetters, correctLetters, secretCity)
+    # Oyunun sonsuz döngü motoru
+    # Tahmin sayıları bitene veya bilene kadar devam edecek.
+    while True:
+        # Her harf tahmini sonrası oyun tahtasının güncel durumunu çizdirmeliyiz
+        # kullanılan harfler, doğru olanlar ve aranan şehir bilgisine göre bu çizim yapılır.
+        draw(missedLetters, correctLetters, secretCity)
+        # Oyuncudan harf tahmini alınan yer.
+        guess = getPlayerGuess(missedLetters + correctLetters)
+        # Harf varsa doğru harfler listesine eklenir.
+        if guess in secretCity:
+            correctLetters.append(guess)
+
+            # doğru olma hali için bir işaret değişkeni (flag)
+            isPlayerCorrect = True
+            # Şehirdeki harflerin tamamı correctLetters içerisinde farsa kullanıcı bilmiştir.
+            for letter in secretCity:
+                if letter not in correctLetters:
+                    isPlayerCorrect = False
+                    break
+            # yani tüm harfler bilindiyse oyun kodu buraya atlar.
+            if isPlayerCorrect:
+                print(
+                    colored(
+                        '''
+                    BRAVOOO!!! 
+                    
+                    {} şehrine iki kişilik uçak bileti kazandın.
+
+                    \a'''.format(secretCity), 'yellow'))
+                # Oyuncu tebrik edildikten sonra break ile while döngüsünden ve onu takiben devam eden satır olmadığı için programdan çıkılır.
+                break
+        else:
+            # Eğer harf yoksa, kullanılan harfler listesine ekleme yapılır.
+            missedLetters.append(guess)
+            # Yarışmanın bitip bitmediğini kontrol etmek için bilinemeyen harflerin toplamı ile HANGMAN_PICS uzunluğu kıyaslanır
+            # Yani kağıda çizilecek şey kalmayınca iş bitmiştir. Oyuncu kaybeder.
+            if len(missedLetters) == len(HANGMAN_PICS) - 1:
+                # Yine tahtanın son hali çizilir
+                draw(missedLetters, correctLetters, secretCity)
+                # ve oyuncuya acı mesaj verilir :D
+                print(
+                    colored(
+                        '''
+                        Ne yazık ki başka hakkın kalmadı :()
+
+                        Kelime şuydu,
+                        {}
+                
+                        '''.format(secretCity), 'red'))
+                break
 
 
 '''
@@ -175,16 +224,15 @@ def getCities(country):
 '''
 
 
-def getPlayerGuess(letter):
+def getPlayerGuess(usedLetters):
     # Oyuncudan ısrarla doğru bir harf girişi yapmasını istediğimiz için sonsuz bir döngü var
     # Bilgi harf olmalı. Yani tek karakter ve alfa nümerik. Ayrıca daha önceden oyuncu tarafından söylenmemiş olmalı.
     while True:
-        print(colored('Tahminin', 'magenta'))
-        guess = input('..:').upper()
+        guess = input(colored('Harf ? ', 'magenta')).upper()
         if len(guess) != 1:
             print(
                 colored('Sadece tek bir harf girmen gerekiyor dostum.', 'red'))
-        elif guess in letter:
+        elif guess in usedLetters:
             print(
                 colored('Bu harfi söylemiştin. Lütfen başka bir tane söyle.',
                         'red'))
@@ -194,8 +242,29 @@ def getPlayerGuess(letter):
             return guess
 
 
-# def draw(missed, correct, word):
-#     print('çizim')
+def draw(missed, correct, word):
+    print(colored(HANGMAN_PICS[len(missed)], 'blue'))
+
+    # print(colored('İşte tutturamadığın harfler: ', 'red'), end='')
+    for letter in missed:
+        print(letter, end=' ')
+    # if len(missed) == 0:
+    #     print(colored('Harf kalmadı\a', 'red'))
+    print()
+
+    # Kelime uzunluğu kadar _ işareti üretiliyor
+    blanks = ['_'] * len(word)
+
+    # Doğru bilinen harfleri boşluklarla değiştirdiğimiz yer
+    # word ile gelen şehrin tüm harflerine bakılıyor.
+    for i in range(len(word)):
+        # Eğer harf kelimede olan bir harfse
+        if word[i] in correct:
+            # _ lerden oluşan kelimedeki yeri bu harfle değiştiriliyor
+            blanks[i] = word[i]
+
+    # Kelime, blanks ile gelen _ karakterleri ile birleştiriliyor
+    print(' '.join(blanks))
 
 
 if __name__ == '__main__':
