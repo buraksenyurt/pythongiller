@@ -281,3 +281,22 @@ Kitapta belirtildiği gibi oyun tahtasının satır, sütun değerlerini değiş
 - _for_ döngülerinde geriye doğru gitmek için _range(max,min,-1)_ formatını kullanabiliriz.
 - Ekrandan girilen metinsel ifadelerdeki boşlukları kaldırmak için _strip_ fonksiyonundan yararlanılabilir.
 - _print_ fonksiyonundaki placeholder' da _tuple_ türünü kullanabiliriz. Tüm tuple elemanları basılır.
+
+## Adam Asmaca _(Hangmane and Guilltoine)_
+
+Seçtiğim 11nci örnek adam asmaca oyunu :) Örnekte hayvanlar aleminden kelimeler kullanılmış. Ben şehirleri kullanayım diyorum. Hatta ülke bazında şehirler olsun ve kaynak olarak bir json dosya kullanalım. Hacklenmeye müsait olacak bu şekilde tabii. İdeal senaryoda kelime havuzunu bir servis üstünden güvenilir bir ağdan getirmek daha mantıklı olabilir. Neyse. Maksat terminalde python ile eğlenceli dakikalar geçirmek :)
+
+__Game11_Hangmane/adamasmaca.py__
+
+İşte oyundan birkaç kare.
+
+![./assets/game11_1.png](./assets/game11_1.png)
+
+![./assets/game11_2.png](./assets/game11_2.png)
+
+![./assets/game11_3.png](./assets/game11_3.png)
+
+### Öğrenilenler
+
+- Bir Json dosya içeriğini okumak için _json_ modülündeki fonksiyonlardan yararlanabiliriz.
+- _Dictionary_ türünde veriler _key,value_ şeklinde tutulur ve _items_ fonksiyonu ile bu çiftler üzerinde döngüsel iterasyonlar kullanılabilir.

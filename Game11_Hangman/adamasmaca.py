@@ -55,9 +55,6 @@ HANGMAN_PICS = [
 ====="""
 ]
 
-COUNTRY = "Türkiye"
-
-
 def main():
 
     print(
@@ -114,7 +111,8 @@ def main():
     cities = getCities(countries[code])
     secretCity = random.choice(cities).upper()
 
-    print(secretCity)
+    # print(secretCity)
+    
     missedLetters = []
     correctLetters = []
 
