@@ -69,27 +69,66 @@ def main():
 
     input(colored('..:', 'cyan'))
 
+    print(
+        colored("""
+        Hangi ülke için yarışmak istersin?
+    """, "cyan"))
+
+    # Ülke adlarını tutan sözlüğü çektiğimiz yer
     countries = getCountryNames()
-    print(countries)
+    # Key Value çiftleri üstünde dolaşıp oyuncuya seçim yapması için yardımcı oluyoruz.
+    for k, v in countries.items():
+        print(colored("""{} -> {}""".format(k, v), "green"))
+
+    # Oyuncunun seçtiği ülke bilgisinin kodunu kontrol ettiğimiz yer
+    while True:
+        selected = input("..:")
+
+        # Oyuncunun girdisinin sayısal olup olmadığı kontrol ediliyor
+        if not selected.isnumeric():
+            print(colored('Ülkenin kodunu girmelisin', 'red'))
+            continue
+
+        # Sayısal int türüne dönüştürülüyor
+        code = int(selected)
+
+        # Ülkeler listesinde olup olmadığına bakılıyor
+        if not code in countries:
+            print(colored('Listede olan kodlardan girmelisin.', 'red'))
+        else:
+            # Nihayet doğru seçimi yapmış demektir
+            break
+
+    print(
+        colored(
+            """
+        Güzel güzeli diyarlardan seçtiğin yer 
+
+        {}
+
+        İşte sorun da geliyor.
+    """.format(countries[code]), "yellow"))
 
 
 '''
 Json veri dosyasından ülke adlarını alan fonksiyondur.
-Geriye ülke adlarından oluşan listeyi döndürür.
+Geriye ülke listesini sayısal numaralar da ekleyerek dictionary olarak döner.
 '''
 
 
 def getCountryNames():
-    names = []
+    # ülke adlarını dictionary olarak tutabiliriz. Çünkü oyuncuya seçim için sayı da vermek istiyorum.
+    names = {}
     # cities.json dosyası utf8 formatlı olarak açılır(Türkçe karakter desteği olsun diye)
     file = open('cities.json', encoding='utf8')
     # dosyadaki veriler json paketinin load fonksiyonu ile yüklenir.
     data = json.load(file)
-
+    index = 10
     # countries json içeriğinde dolaşılır
-    for i in data['countries']:
-        # name alanı değerleri names listesine eklenir
-        names.append(i["name"])
+    for c in data['countries']:
+        # ülke adı index numarası bilgisi ile sözlüğe eklenir
+        names[index] = c["name"]
+        index += 1
 
     # açılmış dosya kapatılır
     file.close()
