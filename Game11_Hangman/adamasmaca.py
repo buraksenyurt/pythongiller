@@ -59,6 +59,7 @@ COUNTRY = "Türkiye"
 
 
 def main():
+
     print(
         colored(
             """        
@@ -109,6 +110,9 @@ def main():
         İşte sorun da geliyor.
     """.format(countries[code]), "yellow"))
 
+    # Oyuncunun seçtiği şehre göre şehirlerin listesini çekiyoruz
+    cities = getCities(countries[code])
+
 
 '''
 Json veri dosyasından ülke adlarını alan fonksiyondur.
@@ -127,7 +131,7 @@ def getCountryNames():
     # countries json içeriğinde dolaşılır
     for c in data['countries']:
         # ülke adı index numarası bilgisi ile sözlüğe eklenir
-        names[index] = c["name"]
+        names[index] = c['name']
         index += 1
 
     # açılmış dosya kapatılır
@@ -135,6 +139,28 @@ def getCountryNames():
 
     # elde edilen ülke adları geriye döndürülür.
     return names
+
+
+'''
+Parametre olarak gelen ülke bilgisine göre JSON içeriğinden şehirleri çeken fonksiyon.
+'''
+
+
+def getCities(country):
+    # Tipik olarak json dosyasının yükleyip countries içindeki name elementlerinde dolaşıyor
+    # ve parametre olarak gelen ülke adına eşit olanı bulunca cities içeriğini listeye alıyoruz.
+    cities = []
+    file = open('cities.json', encoding='utf8')
+    data = json.load(file)
+
+    for c in data['countries']:
+        if c['name'] == country:
+            cities = c['cities']
+            # cities' i bulunca döngüyü devam ettirmeye gerek yok
+            break
+
+    file.close()
+    return cities
 
 
 if __name__ == '__main__':
