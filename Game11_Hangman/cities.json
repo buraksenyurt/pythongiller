@@ -1,0 +1,34 @@
+[
+    {
+        "country": "Türkiye",
+        "cities": [
+            "Ankara",
+            "İstanbul",
+            "İzmir",
+            "Bursa",
+            "Antalya",
+            "Gaziantep",
+            "Kahramanmaraş",
+            "Van",
+            "Şanlıurfa"
+        ]
+    },
+    {
+        "country": "Almanya",
+        "cities": [
+            "Berlin",
+            "Münih",
+            "Köln",
+            "Frankfurt"
+        ]
+    },
+    {
+        "country": "İspanya",
+        "cities": [
+            "Madrid",
+            "Barselona",
+            "Bilbao",
+            "İbiza"
+        ]
+    }
+]
